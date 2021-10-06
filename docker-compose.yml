@@ -6,8 +6,6 @@ services:
     image: neptuo/is4wfw:341.0
     ports:
       - "8100:80"
-    expose:
-      - "22"
     volumes:
       - ./.temp/modules:/var/www/html/modules
       - ./.temp/user:/var/www/html/user
