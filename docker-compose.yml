@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+
+  web:
+    image: neptuo/is4wfw:341.0
+    ports:
+      - "8100:80"
+    expose:
+      - "22"
+    volumes:
+      - ./.temp/modules:/var/www/html/modules
+      - ./.temp/user:/var/www/html/user
+      - ./src:/var/www/html/modules/wiki:ro
+    links:
+      - mysql:db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=1234
+      - PMA_ABSOLUTE_URI=http://localhost:8000
+      - UPLOAD_LIMIT=100M
+    ports:
+      - "8000:80"
+    links:
+      - mysql:db
+        
+  mysql:
+    image: mysql:8.0.19
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_DATABASE=phpwfw
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=phpwfw
+      - MYSQL_PASSWORD=1234
+    command: --sql_mode="" --lower_case_table_names=1
