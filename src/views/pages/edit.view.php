@@ -13,6 +13,9 @@
             <web:redirectTo pageId="route:edit" />
         </web:condition>
 
+        <ui:defaultValue name="created_date" format="web:currentTime" />
+        <ui:constant name="changed_date" value="web:currentTime" />
+
         <bs:formGroup label="Title" field="title">
             <ui:textbox name="title" class="bs:fieldValidatorCssClass" />
         </bs:formGroup>
