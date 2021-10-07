@@ -8,6 +8,7 @@
         
         $web->addEntrypoint($module->id, "wiki", "Wiki", function($params) use ($web, $php, $module) { 
             $php->register("pages", "php.libs.TemplateDirectory", ["path" => $module->getViewsPath() . "pages"]);
+            $php->register("controls", "php.libs.TemplateDirectory", ["path" => $module->getViewsPath() . "controls"]);
             $var = $php->autolib("var");
             $var->setValue("relativeUrl", $params["relativeUrl"]);
 
