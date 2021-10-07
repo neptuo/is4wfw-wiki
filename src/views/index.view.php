@@ -10,6 +10,7 @@
 </web:head>
 <bs:resources />
 
+
 <ce:urlResolver propertyName="url" name="page" columnName="url" />
 
 <router:fromPath path="var:relativeUrl">
@@ -21,6 +22,7 @@
                     <web:a pageId="route:page" text="ce:title" class="list-group-item list-group-item-action" />
                 </ui:forEach>
             </ce:list>
+            <web:a pageId="route:new" text="New" class="list-group-item list-group-item-action list-group-item-info" />
         </ul>
     </router:file>
     <router:file path="login" name="login">
@@ -28,23 +30,20 @@
     </router:file>
     <router:file path="settings" name="settings">
     </router:file>
+    <router:file name="new" path="new">
+        <login:authorized any="wiki">
+            <pages:edit />
+        </login:authorized>
+    </router:file>
     <router:directory path="\ce:url">
         <var:declare name="pageUrl" value="ce:url" />
         <router:file name="edit" path="edit">
-            <pages:edit />
+            <login:authorized any="wiki">
+                <pages:edit url="var:pageUrl" />
+            </login:authorized>
         </router:file>
         <router:file path="" name="page">
-            <ce:list name="page" filter-url="ce:url">
-                <ui:empty items="ce:list">
-                    Not found
-                </ui:empty>
-                <ui:first items="ce:list">
-                    <h1>
-                        <web:out text="ce:title" />
-                    </h1>
-                    <web:out text="ce:content" />
-                </ui:first>
-            </ce:list>
+            <pages:detail url="var:pageUrl" />
         </router:file>
     </router:directory>
     <router:file path="*">
@@ -106,5 +105,12 @@
     </bs:container>
 </nav>
 <bs:container class="mt-4">
+    <var:use name="message" scope="temp" />
+    <web:condition when="var:message">
+        <bs:alert color="primary" class="mb-4">
+            <web:out text="var:message" />
+        </bs:alert>
+    </web:condition>
+    
     <router:render />
 </bs:container>

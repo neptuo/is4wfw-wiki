@@ -1,7 +1,14 @@
-<h1>Edit page</h1>
+<h1>
+    <web:condition when="template:url">
+        Edit
+    </web:condition>
+    <web:condition when="template:url" isInverted="true">
+        New
+    </web:condition>
+</h1>
 
 <edit:form submit="save">
-    <ce:form name="page" key-url="var:pageUrl">
+    <ce:form name="page" key-url="template:url">
         <web:condition when="edit:saved">
             <web:redirectTo pageId="route:edit" />
         </web:condition>
