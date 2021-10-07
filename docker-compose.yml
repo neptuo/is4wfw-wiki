@@ -3,7 +3,7 @@ version: '2'
 services:
 
   web:
-    image: neptuo/is4wfw:341.0
+    image: neptuo/is4wfw:341.1
     ports:
       - "8100:80"
     volumes:

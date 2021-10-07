@@ -7,9 +7,9 @@
         $module = Module::getById("9cce2ed5-3632-4e34-b1eb-a41e1200608a");
         
         $web->addEntrypoint($module->id, "wiki", "Wiki", function($params) use ($web, $php, $module) { 
-            return "xx";
-
-            $php->register("pages", "php.libs.TemplateDirectory", ["path" => $module->getViewsPath() . "pages/"]);
+            $php->register("pages", "php.libs.TemplateDirectory", ["path" => $module->getViewsPath() . "pages"]);
+            $var = $php->autolib("var");
+            $var->setValue("relativeUrl", $params["relativeUrl"]);
 
             $indexContent = file_get_contents($module->getViewsPath() . "index.view.php");
             $pageContent = $web->executeTemplateContent(["modules", $module->alias, "index." . sha1($indexContent)], $indexContent);
