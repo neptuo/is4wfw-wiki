@@ -10,7 +10,6 @@
 </web:head>
 <bs:resources />
 
-
 <ce:urlResolver propertyName="url" name="page" columnName="url" />
 
 <router:fromPath path="var:relativeUrl">
@@ -21,6 +20,7 @@
         <pages:login />
     </router:file>
     <router:file path="settings" name="settings">
+        <pages:settings />
     </router:file>
     <router:file name="new" path="new">
         <login:authorized any="wiki">

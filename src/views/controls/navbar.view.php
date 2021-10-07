@@ -1,7 +1,11 @@
 <nav class="navbar navbar-inverse navbar navbar-expand-lg navbar-dark bg-dark sticky-top main-navbar">
     <bs:container>
         <web:a pageId="route:home" class="navbar-brand">
-            Wiki
+            <var:declare name="brand" value="var:wiki.name" />
+            <web:condition when="var:brand" isInverted="true">
+                <var:declare name="brand" value="Wiki" />
+            </web:condition>
+            <web:out text="var:brand" />
         </web:a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
