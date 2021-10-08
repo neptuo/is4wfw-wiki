@@ -10,7 +10,6 @@
                         <var:declare name="lastPage" value="route:home" />
                     </web:condition>
                     <web:redirectTo pageId="var:lastPage" />
-                    <web:redirectTo pageId="route:home" />
                 </login:login>
             </web:condition>
             <web:condition when="post:login">
@@ -26,7 +25,8 @@
                 <ui:passwordbox name="password" type="password" class="bs:fieldValidatorCssClass" />
             </bs:formGroup>
             
-            <bs:button name="login" value="login" color="secondary" class="mt-2 px-3">
+            <bs:button name="login" value="login" class="mt-2 px-3">
+                <fa5:icon name="sign-in-alt" />
                 Login
             </bs:button>
         </edit:form>

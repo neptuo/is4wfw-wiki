@@ -21,8 +21,16 @@
                             </span>
                         </web:a>
                     </li>
+                    <li class="nav-item">
+                        <web:a pageId="route:profile" class="nav-link">
+                            <fa5:icon name="user" />
+                            <span class="d-none d-md-inline">
+                                <login:info field="username" />
+                            </span>
+                        </web:a>
+                    </li>
                 </ul>
-                <ui:form class="form-inline">
+                <ui:form class="form-inline ml-2">
                     <bs:button name="logout" value="logout" color="danger" isOutline="true" size="small">
                         <fa5:icon name="sign-out-alt" />
                         <span class="d-none d-md-inline">
@@ -35,7 +43,10 @@
                 <ul class="navbar-nav large-navbar-nav ml-auto">
                     <li class="nav-item">
                         <web:a pageId="route:login" class="nav-link">
-                            Login
+                            <fa5:icon name="sign-in-alt" />
+                            <span class="d-none d-md-inline">
+                                Log in
+                            </span>
                         </web:a>
                     </li>
                 </ul>
