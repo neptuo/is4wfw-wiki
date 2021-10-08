@@ -9,6 +9,7 @@
     </style>
 </web:head>
 <bs:resources />
+<fa5:resources />
 
 <ce:urlResolver propertyName="url" name="page" columnName="url" />
 

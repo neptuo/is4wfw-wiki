@@ -9,7 +9,7 @@
         Not found
     </ui:empty>
     <ui:first items="ce:list">
-        <div class="d-flex align-items-center mb-3">
+        <div class="d-flex align-items-center">
             <div class="flex-grow-1">
                 <h1>
                     <web:out text="ce:title" />
@@ -36,6 +36,7 @@
                 </div>
             </login:authorized>
         </div>
+        <hr>
         <md:render source="ce:content" />
     </ui:first>
 </ce:list>
