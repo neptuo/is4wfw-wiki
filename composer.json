@@ -1,0 +1,8 @@
+{
+    "config": {
+        "vendor-dir": "src/composer"
+    },
+    "require": {
+        "league/commonmark": "^2.0"
+    }
+}

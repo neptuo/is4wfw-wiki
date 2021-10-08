@@ -36,7 +36,6 @@
                 </div>
             </login:authorized>
         </div>
-        <utils:replaceHtmlNewLines output="content" input="ce:content" />
-        <web:out text="utils:content" />
+        <md:render source="ce:content" />
     </ui:first>
 </ce:list>

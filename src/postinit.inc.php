@@ -7,8 +7,11 @@
         $module = Module::getById("9cce2ed5-3632-4e34-b1eb-a41e1200608a");
         
         $web->addEntrypoint($module->id, "wiki", "Wiki", function($params) use ($web, $php, $module) { 
+            require_once($module->getRootPath() . "composer/vendor/autoload.php");
+
             $php->register("pages", "php.libs.TemplateDirectory", ["path" => $module->getViewsPath() . "pages"]);
             $php->register("controls", "php.libs.TemplateDirectory", ["path" => $module->getViewsPath() . "controls"]);
+            $php->register("md", $module->alias . ".libs.Markdown");
             $var = $php->autolib("var");
             $var->setValue("relativeUrl", $params["relativeUrl"]);
 

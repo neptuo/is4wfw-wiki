@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<taglib>
+  <comment>
+    Library for rendering markdown.
+  </comment>
+  <tag>
+    <name>render</name>
+    <function>render</function>
+    <attribute>
+      <name>source</name>
+      <required />
+      <comment>Markdown source.</comment>
+    </attribute>
+    <comment>
+      Renders markdown.
+    </comment>
+  </tag>
+</taglib>
