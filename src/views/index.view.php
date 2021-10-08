@@ -11,16 +11,23 @@
 <bs:resources />
 <fa5:resources />
 
+<template:declare identifier="title">
+    <web:setProperty prefix="web" name="pageTitle" value="template:value" />
+</template:declare>
+
 <ce:urlResolver propertyName="url" name="page" columnName="url" />
 
 <router:fromPath path="var:relativeUrl">
     <router:file path="" name="home">
+        <template:title value="Home" />
         <pages:home />
     </router:file>
     <router:file path="login" name="login">
+        <template:title value="Login" />
         <pages:login />
     </router:file>
     <router:file path="settings" name="settings">
+        <template:title value="Settings" />
         <pages:settings />
     </router:file>
     <router:file name="new" path="new">

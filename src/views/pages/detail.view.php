@@ -9,6 +9,7 @@
         Not found
     </ui:empty>
     <ui:first items="ce:list">
+        <template:title value="ce:title" />
         <div class="d-flex align-items-center">
             <div class="flex-grow-1">
                 <h1>

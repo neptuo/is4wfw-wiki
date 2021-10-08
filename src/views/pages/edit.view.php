@@ -12,9 +12,11 @@
         <div class="flex-grow-1">
             <h1>
                 <web:condition when="template:url">
+                    <template:title value="Edit" />
                     Edit
                 </web:condition>
                 <web:condition when="template:url" isInverted="true">
+                    <template:title value="New" />
                     New
                 </web:condition>
             </h1>
