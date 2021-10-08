@@ -1,3 +1,9 @@
+<js:style path="https://unpkg.com/easymde/dist/easymde.min.css" />
+<js:script path="https://unpkg.com/easymde/dist/easymde.min.js" placement="tail" />
+<js:script placement="tail">
+const easyMDE = new EasyMDE({element: document.getElementById('md-content')});
+</js:script>
+
 <h1>
     <web:condition when="template:url">
         Edit
@@ -23,7 +29,7 @@
             <ui:textbox name="url" class="bs:fieldValidatorCssClass" />
         </bs:formGroup>
         <bs:formGroup label="Content" field="content">
-            <ui:textarea name="content" class="bs:fieldValidatorCssClass" style="height:500px;" />
+            <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" />
         </bs:formGroup>
         <div>
             <bs:button name="save">
