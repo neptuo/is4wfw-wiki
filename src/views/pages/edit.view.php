@@ -49,13 +49,25 @@
         <ui:defaultValue name="created_date" format="web:currentTime" />
         <ui:constant name="changed_date" value="web:currentTime" />
 
-        <bs:formGroup label="Title" field="title">
-            <ui:textbox name="title" class="bs:fieldValidatorCssClass" tabindex="1" autofocus="autofocus" />
-        </bs:formGroup>
-        <bs:formGroup label="Url" field="url">
-            <ui:textbox name="url" class="bs:fieldValidatorCssClass" tabindex="2" />
-        </bs:formGroup>
-        <bs:formGroup label="Content" field="content">
+        <bs:row>
+            <bs:column default="12" medium="6">
+                <bs:formGroup label="Title:" field="title">
+                    <ui:textbox name="title" class="bs:fieldValidatorCssClass" tabindex="1" autofocus="autofocus" />
+                </bs:formGroup>
+            </bs:column>
+            <bs:column default="12" medium="6">
+                <bs:formGroup label="Url:" field="url">
+                    <ui:textbox name="url" class="bs:fieldValidatorCssClass" tabindex="2" />
+                </bs:formGroup>
+                <div class="form-check">
+                    <ui:checkbox name="is_public" class="form-check-input" id="cbx-public" />
+                    <label class="form-check-label" for="cbx-public">
+                        Publicly accessible
+                    </label>
+                </div>
+            </bs:column>
+        </bs:row>
+        <bs:formGroup label="Content:" field="content">
             <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" tabindex="3" />
         </bs:formGroup>
     </ce:form>
