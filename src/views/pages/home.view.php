@@ -3,6 +3,9 @@
         <filter:like name="content" contains="query:q" />
         <filter:like name="title" contains="query:q" />
     </filter:or>
+    <login:authorized none="wiki">
+        <filter:equals name="is_public" value="1" />
+    </login:authorized>
 </filter:declare>
 
 <edit:form submit="search">
@@ -25,8 +28,16 @@
 </edit:form>
 
 <ce:list name="page" filter="filter:page" orderBy-title="asc">
-    <ui:any items="ce:list">
-        <div class="list-group mb-4">
+    <div class="list-group mb-4">
+        <ui:empty items="ce:list">
+            <div class="list-group-item">
+                <fa5:icon name="battery-empty" />
+                <span class="ml-2 text-secondary">
+                    Nothing to show here...
+                </span>
+            </div>
+        </ui:empty>
+        <ui:any items="ce:list">
             <ce:register name="url" />
             <ui:forEach items="ce:list">
                 <web:a pageId="route:page" class="list-group-item list-group-item-action">
@@ -40,12 +51,14 @@
                     </small>
                 </web:a>
             </ui:forEach>
-        </div>
-    </ui:any>
+        </ui:any>
+    </div>
 </ce:list>
-<div class="list-group">
-    <web:a pageId="route:new" class="list-group-item list-group-item-action">
-        <fa5:icon name="plus" />
-        Create a bright new page
-    </web:a>
-</div>
+<login:authorized any="wiki">
+    <div class="list-group">
+        <web:a pageId="route:new" class="list-group-item list-group-item-action">
+            <fa5:icon name="plus" />
+            Create a bright new page
+        </web:a>
+    </div>
+</login:authorized>
