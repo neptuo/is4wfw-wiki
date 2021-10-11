@@ -1,3 +1,4 @@
+<login:init group="wiki" cookieName="wiki" />
 <web:doctype type="html5" />
 <web:head>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no" />

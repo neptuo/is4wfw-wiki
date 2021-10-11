@@ -1,4 +1,3 @@
-<login:init group="wiki" cookieName="wiki" />
 <login:refresh group="wiki" />
 <web:condition when="post:logout" is="logout">
     <login:logout group="wiki">
