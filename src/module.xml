@@ -2,9 +2,9 @@
 <module>
     <id>9cce2ed5-3632-4e34-b1eb-a41e1200608a</id>
     <name>is4wfw wiki</name>
-    <version>0.0</version>
+    <version>v0.0</version>
     <is4wfw>
-        <minVersion>341.1</minVersion>
+        <minVersion>v341.1</minVersion>
     </is4wfw>
     <gitHub>
         <repository>
