@@ -46,9 +46,18 @@
                             <web:out text="ce:title" />
                         </h5>
                     </div>
-                    <small>
-                        Changed at <ui:dateTimeValue value="ce:changed_date" format="d.m.Y H:i:s" />
-                    </small>
+                    <div>
+                        <small class="mr-1">
+                            <fa5:icon prefix="far" name="clock" title="Changed at" />
+                            <ui:dateTimeValue value="ce:changed_date" format="d.m.Y H:i:s" />
+                        </small>
+                        <web:condition when="ce:is_public">
+                            <small class="mr-1">
+                                <fa5:icon name="user-secret" />
+                                Public
+                            </small>
+                        </web:condition>
+                    </div>
                 </web:a>
             </ui:forEach>
         </ui:any>
