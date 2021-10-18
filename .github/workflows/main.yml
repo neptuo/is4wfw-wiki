@@ -37,8 +37,8 @@ jobs:
           draft: true
           replacesArtifacts: true
           artifacts: './is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip'
-          token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: ${{ contains(steps.versions.outputs.tag_name, 'preview') }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Publish release
         uses: ncipollo/release-action@v1.7.1
@@ -46,4 +46,5 @@ jobs:
           allowUpdates: true
           omitBodyDuringUpdate: true
           replacesArtifacts: false
+          prerelease: ${{ contains(steps.versions.outputs.tag_name, 'preview') }}
           token: ${{ secrets.GITHUB_TOKEN }}
