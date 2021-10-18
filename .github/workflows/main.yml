@@ -31,7 +31,7 @@ jobs:
         uses: montudor/action-zip@v1
 
       - name: Zip artifact
-        run: zip -qq -r ./is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip ./
+        run: zip -qq -r ./is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip ./**
         working-directory: ./src
       
       - name: Prepare release
