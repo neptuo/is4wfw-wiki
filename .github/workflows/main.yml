@@ -27,10 +27,12 @@ jobs:
         run: ./tools/Update-Version.ps1 ${{ steps.versions.outputs.tag_name }}
         shell: pwsh
 
-      - name: Zip artifact
+      - name: Install zip action
         uses: montudor/action-zip@v1
-        with:
-          args: zip -qq -r ./is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip ./src/
+
+      - name: Zip artifact
+        run: zip -qq -r ./is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip ./
+        working-directory: ./src
       
       - name: Prepare release
         uses: ncipollo/release-action@v1.7.1
