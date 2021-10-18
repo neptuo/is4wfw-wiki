@@ -7,15 +7,25 @@
     });
 </js:script>
 
+<var:declare name="pageId" value="" />
+<web:condition when="template:url">
+    <ce:list name="page" filter-url="template:url">
+        <ce:register name="id" />
+        <ui:first items="ce:list">
+            <var:declare name="pageId" value="ce:id" />
+        </ui:first>
+    </ce:list>
+</web:condition>
+
 <edit:form submit="save">
     <div class="d-flex align-items-center">
         <div class="flex-grow-1">
             <h1>
-                <web:condition when="template:url">
+                <web:condition when="var:pageId">
                     <template:title value="Edit" />
                     Edit
                 </web:condition>
-                <web:condition when="template:url" isInverted="true">
+                <web:condition when="var:pageId" isInverted="true">
                     <template:title value="New" />
                     New
                 </web:condition>
@@ -36,7 +46,7 @@
         </div>
     </div>
     <hr>
-    <ce:form name="page" key-url="template:url">
+    <ce:form name="page" key-id="var:pageId">
         <web:condition when="edit:saved">
             <web:condition when="post:save" is="save">
                 <web:redirectTo pageId="route:edit" />
@@ -73,7 +83,18 @@
 
         <web:condition when="edit:submit">
             <val:required key="title" /> 
-            <val:required key="url" /> 
+            <val:required key="url" />
+
+            <filter:declare name="pageUnique">
+                <filter:equals name="url" value="edit:url" />
+                <filter:equals name="id" value="var:pageId" not="true" />
+            </filter:declare>
+            <ce:list name="page" filter="filter:pageUnique">
+                <ce:register name="id" />
+                <ui:any items="ce:list">
+                    <val:add key="url" identifier="unique" />
+                </ui:any>
+            </ce:list>
         </web:condition>
     </ce:form>
 </edit:form>
