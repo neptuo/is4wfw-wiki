@@ -38,6 +38,7 @@ jobs:
           replacesArtifacts: true
           artifacts: './is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip'
           prerelease: ${{ contains(steps.versions.outputs.tag_name, 'preview') }}
+          artifactContentType: 'application/x-zip-compressed'
           token: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Publish release
