@@ -21,6 +21,7 @@ jobs:
       
       - name: Pack
         run: ./tools/Pack-Full.ps1 ${{ steps.versions.outputs.tag_name }}
+        shell: pwsh
       
       - name: Prepare release
         uses: ncipollo/release-action@v1.7.1
