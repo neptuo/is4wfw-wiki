@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Pack & release
     steps:
       - uses: actions/checkout@v2
@@ -19,9 +19,18 @@ jobs:
             echo "::set-output name=TAG_NAME::$TAG_NAME"
         shell: bash
       
-      - name: Pack
-        run: ./tools/Pack-Full.ps1 ${{ steps.versions.outputs.tag_name }}
+      - name: Install composer
+        run: ./tools/Install-Composer.ps1
         shell: pwsh
+      
+      - name: Update version
+        run: ./tools/Update-Version.ps1 ${{ steps.versions.outputs.tag_name }}
+        shell: pwsh
+
+      - name: Zip artifact
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r ./artifacts/is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip ./src
       
       - name: Prepare release
         uses: ncipollo/release-action@v1.7.1
