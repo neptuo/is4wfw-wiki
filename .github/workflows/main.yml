@@ -1,0 +1,41 @@
+name: is4wfw wiki
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: Pack & release
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare versions
+        id: versions
+        run: |
+            TAG_NAME=${GITHUB_REF#refs/tags/}
+            echo "::set-output name=TAG_NAME::$TAG_NAME"
+        shell: bash
+      
+      - name: Pack
+        run: ./tools/Pack-Full.ps1 ${{ steps.versions.outputs.tag_name }}
+      
+      - name: Prepare release
+        uses: ncipollo/release-action@v1.7.1
+        with:
+          allowUpdates: true
+          draft: true
+          replacesArtifacts: true
+          artifacts: './artifacts/is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: ${{ contains(steps.versions.outputs.tag_name, 'preview') }}
+          
+      - name: Publish release
+        uses: ncipollo/release-action@v1.7.1
+        with:
+          allowUpdates: true
+          omitBodyDuringUpdate: true
+          replacesArtifacts: false
+          token: ${{ secrets.GITHUB_TOKEN }}
