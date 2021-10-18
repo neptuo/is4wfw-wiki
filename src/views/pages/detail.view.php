@@ -20,9 +20,21 @@
         <template:title value="ce:title" />
         <div class="d-flex align-items-center">
             <div class="flex-grow-1">
-                <h1>
+                <h1 class="mb-0">
                     <web:out text="ce:title" />
                 </h1>
+                <div>
+                    <small class="mr-1">
+                        <fa5:icon prefix="far" name="clock" title="Changed at" />
+                        <ui:dateTimeValue value="ce:changed_date" format="d.m.Y H:i:s" />
+                    </small>
+                    <web:condition when="ce:is_public">
+                        <small class="mr-1">
+                            <fa5:icon name="user-secret" />
+                            Public
+                        </small>
+                    </web:condition>
+                </div>
             </div>
             <login:authorized any="wiki">
                 <div>

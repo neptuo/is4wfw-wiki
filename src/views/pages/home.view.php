@@ -20,7 +20,14 @@
                             Search
                         </span>
                     </bs:button>
-                    <web:a pageId="route:home" class="btn btn-secondary">Clear</web:a>
+                    <web:a pageId="route:home" class="btn btn-secondary">
+                        <span class="d-inline d-md-none">
+                            <fa5:icon name="times" />
+                        </span>
+                        <span class="d-none d-md-inline">
+                            Clear
+                        </span>
+                    </web:a>
                 </div>
             </div>
         </bs:formGroup>

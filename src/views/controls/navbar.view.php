@@ -16,26 +16,20 @@
                     <li class="nav-item">
                         <web:a pageId="route:settings" class="nav-link">
                             <fa5:icon name="cog" />
-                            <span class="d-none d-md-inline">
-                                Settings
-                            </span>
+                            Settings
                         </web:a>
                     </li>
                     <li class="nav-item">
                         <web:a pageId="route:profile" class="nav-link">
                             <fa5:icon name="user" />
-                            <span class="d-none d-md-inline">
-                                <login:info field="username" />
-                            </span>
+                            <login:info field="username" />
                         </web:a>
                     </li>
                 </ul>
-                <ui:form class="form-inline ml-2">
+                <ui:form class="form-inline ml-mlg-2">
                     <bs:button name="logout" value="logout" color="danger" isOutline="true" size="small">
                         <fa5:icon name="sign-out-alt" />
-                        <span class="d-none d-md-inline">
-                            Log out
-                        </span>
+                        Log out
                     </bs:button>
                 </ui:form>
             </login:authorized>
@@ -44,9 +38,7 @@
                     <li class="nav-item">
                         <web:a pageId="route:login" class="nav-link">
                             <fa5:icon name="sign-in-alt" />
-                            <span class="d-none d-md-inline">
-                                Log in
-                            </span>
+                            Log in
                         </web:a>
                     </li>
                 </ul>
