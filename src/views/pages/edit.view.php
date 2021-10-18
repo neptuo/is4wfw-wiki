@@ -70,5 +70,10 @@
         <bs:formGroup label="Content:" field="content">
             <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" tabindex="3" />
         </bs:formGroup>
+
+        <web:condition when="edit:submit">
+            <val:required key="title" /> 
+            <val:required key="url" /> 
+        </web:condition>
     </ce:form>
 </edit:form>
