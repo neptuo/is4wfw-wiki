@@ -30,8 +30,7 @@ jobs:
       - name: Zip artifact
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r ./is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip ./
-        working-directory: ./src
+          args: zip -qq -r ./is4wfw-wiki-${{ steps.versions.outputs.tag_name }}.zip ./src/
       
       - name: Prepare release
         uses: ncipollo/release-action@v1.7.1
