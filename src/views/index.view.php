@@ -35,6 +35,10 @@
         <template:title value="Profile" />
         <pages:profile />
     </router:file>
+    <router:file path="about" name="about">
+        <template:title value="About" />
+        <pages:about />
+    </router:file>
     <router:file name="new" path="new">
         <login:authorized any="wiki">
             <pages:edit />

@@ -1,3 +1,13 @@
+<template:declare identifier="navbarItem">
+    <li class="nav-item">
+        <web:a pageId="template:url" class="nav-link">
+            <fa5:icon name="template:icon" />
+            <web:out text="template:text" />
+            <template:content />
+        </web:a>
+    </li>
+</template:declare>
+
 <nav class="navbar navbar-inverse navbar navbar-expand-lg navbar-dark bg-dark sticky-top main-navbar">
     <bs:container>
         <web:a pageId="route:home" class="navbar-brand">
@@ -11,20 +21,15 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav large-navbar-nav">
+                <template:navbarItem url="route:settings" icon="cog" text="Settings" />
+                <template:navbarItem url="route:about" icon="info-circle" text="About" />
+            </ul>
             <login:authorized any="wiki">
                 <ul class="navbar-nav large-navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <web:a pageId="route:settings" class="nav-link">
-                            <fa5:icon name="cog" />
-                            Settings
-                        </web:a>
-                    </li>
-                    <li class="nav-item">
-                        <web:a pageId="route:profile" class="nav-link">
-                            <fa5:icon name="user" />
-                            <login:info field="username" />
-                        </web:a>
-                    </li>
+                    <template:navbarItem url="route:profile" icon="user">
+                        <login:info field="username" />
+                    </template:navbarItem>
                 </ul>
                 <ui:form class="form-inline ml-mlg-2">
                     <bs:button name="logout" value="logout" color="danger" isOutline="true" size="small">
