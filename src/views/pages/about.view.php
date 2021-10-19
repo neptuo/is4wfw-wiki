@@ -1,6 +1,6 @@
 <h1>About</h1>
 <p>
-    WIKI module for is4wfw
+    WIKI module for <u><a target="blank" href="http://is4wfw.neptuo.com" class="text-dark">is4wfw</a></u> by <u><a target="blank" href="https://www.neptuo.com" class="text-dark">Neptuo</a></u>
 </p>
 <p class="text-muted">
     <module:use id="9cce2ed5-3632-4e34-b1eb-a41e1200608a">
