@@ -67,7 +67,11 @@
             </bs:column>
             <bs:column default="12" medium="6">
                 <bs:formGroup label="Url:" field="url">
-                    <ui:textbox name="url" class="bs:fieldValidatorCssClass" tabindex="2" />
+                    <ui:toUrlValue name="url">
+                        <ui:defaultValue name="url" format="{title}">
+                            <ui:textbox name="url" class="bs:fieldValidatorCssClass" tabindex="2" />
+                        </ui:defaultValue>
+                    </ui:toUrlValue>
                 </bs:formGroup>
                 <div class="form-check">
                     <ui:checkbox name="is_public" class="form-check-input" id="cbx-public" />
