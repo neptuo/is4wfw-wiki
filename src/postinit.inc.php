@@ -14,6 +14,7 @@
             $php->register("md", $module->alias . ".libs.Markdown");
             $var = $php->autolib("var");
             $var->setValue("relativeUrl", $params["relativeUrl"]);
+            $var->setValue("moduleId", $module->id);
 
             $indexContent = file_get_contents($module->getViewsPath() . "index.view.php");
             $pageContent = $web->executeTemplateContent(["modules", $module->alias, "index." . sha1($indexContent)], $indexContent);

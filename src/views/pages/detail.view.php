@@ -1,3 +1,7 @@
+<module:assets path="github-markdown-light.css">
+    <js:style path="module:assets" />
+</module:assets>
+
 <login:authorized any="wiki">
     <web:condition when="post:delete">
         <ce:deleter name="page" url="template:url">
@@ -58,6 +62,8 @@
             </web:condition>
         </div>
         <hr>
-        <md:render source="ce:content" />
+        <div class="markdown-body">
+            <md:render source="ce:content" />
+        </div>
     </ui:first>
 </ce:list>
