@@ -84,6 +84,7 @@
         <bs:formGroup label="Content:" field="content">
             <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" tabindex="3" />
         </bs:formGroup>
+        <hr />
 
         <web:condition when="edit:submit">
             <val:required key="title" /> 
@@ -101,4 +102,21 @@
             </ce:list>
         </web:condition>
     </ce:form>
+    <web:condition when="edit:save">
+        <var:declare name="edit_id" value="ce:id" />
+        <var:declare name="edit_created_date" value="ce:changed_date" />
+        <var:declare name="edit_title" value="ce:title" />
+        <var:declare name="edit_url" value="ce:url" />
+        <var:declare name="edit_content" value="ce:content" />
+        <var:declare name="edit_is_public" value="ce:is_public" />
+    </web:condition>
+    <edit:prefix name="history">
+        <edit:set name="id" value="var:edit_id" />
+        <edit:set name="created_date" value="var:edit_created_date" />
+        <edit:set name="title" value="var:edit_title" />
+        <edit:set name="url" value="var:edit_url" />
+        <edit:set name="content" value="var:edit_content" />
+        <edit:set name="is_public" value="var:edit_is_public" />
+        <ce:save name="pagehistory" />
+    </edit:prefix>
 </edit:form>

@@ -30,6 +30,14 @@
             </div>
             <login:authorized any="wiki">
                 <div>
+                    <web:a pageId="route:history" class="btn btn-secondary text-nowrap">
+                        <fa5:icon prefix="fas" name="history" />
+                        <span class="d-none d-md-inline">
+                            History
+                        </span>
+                    </web:a>
+                </div>
+                <div class="ml-2">
                     <web:a pageId="route:edit" class="btn btn-primary text-nowrap">
                         <fa5:icon name="pen" />
                         <span class="d-none d-md-inline">
