@@ -19,26 +19,14 @@
     <ui:first items="ce:list">
         <template:title value="ce:title" />
         <div class="d-flex align-items-center">
-            <div class="flex-grow-1">
-                <h1 class="mb-0">
+            <div class="flex-grow-1 text-truncate">
+                <h1 class="mb-0 text-truncate">
                     <web:out text="ce:title" />
                 </h1>
-                <div>
-                    <small class="mr-1">
-                        <fa5:icon prefix="far" name="clock" title="Changed at" />
-                        <ui:dateTimeValue value="ce:changed_date" format="d.m.Y H:i:s" />
-                    </small>
-                    <web:condition when="ce:is_public">
-                        <small class="mr-1">
-                            <fa5:icon name="user-secret" />
-                            Public
-                        </small>
-                    </web:condition>
-                </div>
             </div>
             <login:authorized any="wiki">
                 <div>
-                    <web:a pageId="route:edit" class="btn btn-primary">
+                    <web:a pageId="route:edit" class="btn btn-primary text-nowrap">
                         <fa5:icon name="pen" />
                         <span class="d-none d-md-inline">
                             Edit
@@ -47,7 +35,7 @@
                 </div>
                 <div class="ml-2">
                     <ui:form class="form-inline">
-                        <bs:button color="danger" name="delete" value="delete">
+                        <bs:button color="danger" name="delete" value="delete" class="text-nowrap">
                             <fa5:icon name="trash-alt" />
                             <span class="d-none d-md-inline">
                                 Delete
@@ -56,6 +44,18 @@
                     </ui:form>
                 </div>
             </login:authorized>
+        </div>
+        <div>
+            <small class="mr-1">
+                <fa5:icon prefix="far" name="clock" title="Changed at" />
+                <ui:dateTimeValue value="ce:changed_date" format="d.m.Y H:i:s" />
+            </small>
+            <web:condition when="ce:is_public">
+                <small class="mr-1">
+                    <fa5:icon name="user-secret" />
+                    Public
+                </small>
+            </web:condition>
         </div>
         <hr>
         <md:render source="ce:content" />
