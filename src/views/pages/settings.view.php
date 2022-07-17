@@ -9,7 +9,7 @@
         <web:redirectToSelf />
     </web:condition>
 
-    <bs:row class="align-items-end">
+    <div class="form-row align-items-end">
         <bs:column>
             <bs:formGroup label="Instance name:" field="name">
                 <ui:textbox name="name" class="bs:fieldValidatorCssClass" />
@@ -20,5 +20,5 @@
                 <bs:button name="instanceNameSave" text="Save" />
             </bs:formGroup>
         </bs:column>
-    </bs:row>
+    </div>
 </edit:form>

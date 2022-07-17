@@ -10,27 +10,41 @@
 
 <edit:form submit="search">
     <ui:filter>
-        <bs:formGroup field="q">
-            <div class="input-group mb-3">
-                <ui:textbox name="q" class="bs:fieldValidatorCssClass" placeholder="Search..." />
-                <div class="input-group-append">
-                    <bs:button name="search">
-                        <fa5:icon name="search" />
+        <div class="form-row">
+            <bs:column>
+                <bs:formGroup field="q">
+                    <div class="input-group mb-3">
+                        <ui:textbox name="q" class="bs:fieldValidatorCssClass" placeholder="Search..." />
+                        <div class="input-group-append">
+                            <bs:button name="search">
+                                <fa5:icon name="search" />
+                                <span class="d-none d-md-inline">
+                                    Search
+                                </span>
+                            </bs:button>
+                            <web:a pageId="route:home" class="btn btn-secondary">
+                                <span class="d-inline d-md-none">
+                                    <fa5:icon name="times" />
+                                </span>
+                                <span class="d-none d-md-inline">
+                                    Clear
+                                </span>
+                            </web:a>
+                        </div>
+                    </div>
+                </bs:formGroup>
+            </bs:column>
+            <login:authorized any="wiki">
+                <bs:column default="auto">
+                    <web:a pageId="route:new" class="btn btn-success">
+                        <fa5:icon name="plus" />
                         <span class="d-none d-md-inline">
-                            Search
-                        </span>
-                    </bs:button>
-                    <web:a pageId="route:home" class="btn btn-secondary">
-                        <span class="d-inline d-md-none">
-                            <fa5:icon name="times" />
-                        </span>
-                        <span class="d-none d-md-inline">
-                            Clear
+                            New page
                         </span>
                     </web:a>
-                </div>
-            </div>
-        </bs:formGroup>
+                </bs:column>
+            </login:authorized>
+        </div>
     </ui:filter>
 </edit:form>
 
@@ -70,11 +84,3 @@
         </ui:any>
     </div>
 </ce:list>
-<login:authorized any="wiki">
-    <div class="list-group">
-        <web:a pageId="route:new" class="list-group-item list-group-item-action">
-            <fa5:icon name="plus" />
-            Create a bright new page
-        </web:a>
-    </div>
-</login:authorized>
