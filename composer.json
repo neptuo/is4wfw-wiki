@@ -1,8 +1,12 @@
 {
     "config": {
-        "vendor-dir": "src/composer"
+        "vendor-dir": "src/composer",
+        "platform": {
+            "php": "7.4"
+        }
     },
     "require": {
+        "php": "7.4",
         "league/commonmark": "^2.0"
     }
 }
