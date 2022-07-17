@@ -16,7 +16,8 @@
     <fa5:resources />
 
     <template:declare identifier="title">
-        <web:setProperty prefix="web" name="pageTitle" value="template:value" />
+        <utils:concat output="pageTitle" value1="template:value" value2=" - " value3="var:brand" />
+        <web:setProperty prefix="web" name="pageTitle" value="utils:pageTitle" />
     </template:declare>
 
     <ce:urlResolver name="page" propertyName="url" columnName="url" />
