@@ -56,7 +56,7 @@
                     <pages:edit url="var:pageUrl" />
                 </login:authorized>
             </router:file>
-            <router:directorypath="history">
+            <router:directory path="history">
                 <router:file name="historyRevision" path="\cehistory:created_date">
                     <pages:historyRevision url="var:pageUrl" createdDate="cehistory:created_date" />
                 </router:file>
@@ -69,6 +69,20 @@
             </router:file>
         </router:directory>
         <router:file path="*">
+            <paging:container size="1">
+                <!-- We can't use url resolver because page history may contain multiple entry with the URL -->
+                <cehistory:list name="pagehistory" filter-url="var:relativeUrl" paging="paging:container">
+                    <ui:first items="cehistory:list">
+                        <ce:list name="page" filter-id="cehistory:id">
+                            <ui:first items="ce:list">
+                                <ce:register name="url" />
+                                <web:redirectTo pageId="route:page" />
+                            </ui:first>
+                        </ce:list>
+                    </ui:first>
+                </cehistory:list>
+            </paging:container>
+
             Not found
         </router:file>
     </router:fromPath>
