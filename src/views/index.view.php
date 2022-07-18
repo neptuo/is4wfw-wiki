@@ -90,7 +90,7 @@
     <controls:auth />
 
     <controls:navbar />
-    <bs:container class="mt-4">
+    <bs:container class="my-4">
         <var:use name="message" scope="temp" />
         <web:condition when="var:message">
             <bs:alert color="primary" class="mb-4">
