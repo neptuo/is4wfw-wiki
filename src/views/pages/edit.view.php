@@ -17,6 +17,18 @@
     </ce:list>
 </web:condition>
 
+<template:declare identifier="saveHistory">
+    <edit:execute>
+        <edit:set name="id" value="template:edit_id" />
+        <edit:set name="created_date" value="template:edit_created_date" />
+        <edit:set name="title" value="template:edit_title" />
+        <edit:set name="url" value="template:edit_url" />
+        <edit:set name="content" value="template:edit_content" />
+        <edit:set name="is_public" value="template:edit_is_public" />
+        <ce:save name="pagehistory" />
+    </edit:execute>
+</template:declare>
+
 <edit:form submit="save">
     <div class="d-flex align-items-center">
         <div class="flex-grow-1">
@@ -47,13 +59,28 @@
     </div>
     <hr>
     <ce:form name="page" key-id="var:pageId">
+        <if:eval name="saveHistoryInSave">
+            <if:equals value="var:pageId" is="" not="true" />
+        </if:eval>
+        <if:eval name="saveHistoryInSaved">
+            <if:equals value="var:pageId" is="" />
+        </if:eval>
+
         <web:condition when="edit:saved">
             <web:condition when="post:save" is="save">
-                <web:redirectTo pageId="route:edit" />
+                <web:url pageId="route:edit">
+                    <var:declare name="redirectUrl" value="web:url" />
+                </web:url>
             </web:condition>
             <web:condition when="post:save" is="save-close">
-                <web:redirectTo pageId="route:page" />
+                <web:url pageId="route:page">
+                    <var:declare name="redirectUrl" value="web:url" />
+                </web:url>
             </web:condition>
+
+            <template:saveHistory edit_id="edit:id" edit_created_date="ce:changed_date" edit_title="ce:title" edit_url="ce:url" edit_content="ce:content" edit_is_public="ce:is_public" />
+
+            <web:redirectTo pageId="var:redirectUrl" />
         </web:condition>
 
         <ui:defaultValue name="created_date" format="web:currentTime" />
@@ -102,21 +129,4 @@
             </ce:list>
         </web:condition>
     </ce:form>
-    <web:condition when="edit:save">
-        <var:declare name="edit_id" value="ce:id" />
-        <var:declare name="edit_created_date" value="ce:changed_date" />
-        <var:declare name="edit_title" value="ce:title" />
-        <var:declare name="edit_url" value="ce:url" />
-        <var:declare name="edit_content" value="ce:content" />
-        <var:declare name="edit_is_public" value="ce:is_public" />
-    </web:condition>
-    <edit:prefix name="history">
-        <edit:set name="id" value="var:edit_id" />
-        <edit:set name="created_date" value="var:edit_created_date" />
-        <edit:set name="title" value="var:edit_title" />
-        <edit:set name="url" value="var:edit_url" />
-        <edit:set name="content" value="var:edit_content" />
-        <edit:set name="is_public" value="var:edit_is_public" />
-        <ce:save name="pagehistory" />
-    </edit:prefix>
 </edit:form>
