@@ -25,6 +25,7 @@
         <edit:set name="url" value="template:edit_url" />
         <edit:set name="content" value="template:edit_content" />
         <edit:set name="is_public" value="template:edit_is_public" />
+        <edit:set name="is_archived" value="template:edit_is_archived" />
         <ce:save name="pagehistory" />
     </edit:execute>
 </template:declare>
@@ -78,7 +79,7 @@
                 </web:url>
             </web:condition>
 
-            <template:saveHistory edit_id="edit:id" edit_created_date="ce:changed_date" edit_title="ce:title" edit_url="ce:url" edit_content="ce:content" edit_is_public="ce:is_public" />
+            <template:saveHistory edit_id="edit:id" edit_created_date="ce:changed_date" edit_title="ce:title" edit_url="ce:url" edit_content="ce:content" edit_is_public="ce:is_public" edit_is_archived="ce:is_archived" />
 
             <web:redirectTo pageId="var:redirectUrl" />
         </web:condition>
@@ -100,18 +101,25 @@
                         </ui:defaultValue>
                     </ui:toUrlValue>
                 </bs:formGroup>
-                <div class="form-check">
+            </bs:column>
+            <bs:column default="12">
+                <div class="form-check-inline">
                     <ui:checkbox name="is_public" class="form-check-input" id="cbx-public" />
                     <label class="form-check-label" for="cbx-public">
                         Publicly accessible
                     </label>
                 </div>
+                <div class="form-check-inline">
+                    <ui:checkbox name="is_archived" class="form-check-input" id="cbx-archived" />
+                    <label class="form-check-label" for="cbx-archived">
+                        Archived
+                    </label>
+                </div>
             </bs:column>
         </bs:row>
-        <bs:formGroup label="Content:" field="content">
+        <bs:formGroup field="content" class="mt-3">
             <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" tabindex="3" />
         </bs:formGroup>
-        <hr />
 
         <web:condition when="edit:submit">
             <val:required key="title" /> 

@@ -46,15 +46,23 @@
                                     <bs:formGroup label="Url:" field="url">
                                         <ui:textbox name="url" class="bs:fieldValidatorCssClass" tabindex="2" />
                                     </bs:formGroup>
-                                    <div class="form-check">
+                                </bs:column>
+                                <bs:column default="12">
+                                    <div class="form-check-inline">
                                         <ui:checkbox name="is_public" class="form-check-input" id="cbx-public" />
                                         <label class="form-check-label" for="cbx-public">
                                             Publicly accessible
                                         </label>
                                     </div>
+                                    <div class="form-check-inline">
+                                        <ui:checkbox name="is_archived" class="form-check-input" id="cbx-archived" />
+                                        <label class="form-check-label" for="cbx-archived">
+                                            Archived
+                                        </label>
+                                    </div>
                                 </bs:column>
                             </bs:row>
-                            <bs:formGroup label="Content:" field="content">
+                            <bs:formGroup field="content" class="mt-3">
                                 <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" tabindex="3" />
                             </bs:formGroup>
                         </cehistory:form>
