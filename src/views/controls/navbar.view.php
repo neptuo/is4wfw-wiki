@@ -22,6 +22,8 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
             <ul class="navbar-nav large-navbar-nav">
+                <template:navbarItem url="route:all" icon="file-alt" text="All pages" />
+                <template:navbarItem url="route:archive" icon="archive" text="Archive" />
                 <template:navbarItem url="route:settings" icon="cog" text="Settings" />
                 <template:navbarItem url="route:about" icon="info-circle" text="About" />
             </ul>

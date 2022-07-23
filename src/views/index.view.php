@@ -32,6 +32,14 @@
             <template:title value="Login" />
             <pages:login />
         </router:file>
+        <router:file path="all" name="all">
+            <template:title value="All pages" />
+            <controls:pageList />
+        </router:file>
+        <router:file path="archive" name="archive">
+            <template:title value="Archive" />
+            <pages:archive />
+        </router:file>
         <router:file path="settings" name="settings">
             <template:title value="Settings" />
             <pages:settings />
