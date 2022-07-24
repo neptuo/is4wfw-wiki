@@ -45,17 +45,17 @@
             </h1>
         </div>
         <div>
-            <bs:button name="save" value="save" tabindex="4">
+            <bs:button name="save" value="save" tabindex="5">
                 Save
             </bs:button>
         </div>
         <div class="ml-2">
-            <bs:button name="save" value="save-close" tabindex="5">
+            <bs:button name="save" value="save-close" tabindex="6">
                 Save and close
             </bs:button>
         </div>
         <div class="ml-2">
-            <web:a pageId="route:page" text="Close" class="btn btn-secondary" tabindex="6" />
+            <web:a pageId="route:page" text="Close" class="btn btn-secondary" tabindex="7" />
         </div>
     </div>
     <hr>
@@ -88,16 +88,21 @@
         <ui:constant name="changed_date" value="web:currentTime" />
 
         <bs:row>
-            <bs:column default="12" medium="6">
-                <bs:formGroup label="Title:" field="title">
-                    <ui:textbox name="title" class="bs:fieldValidatorCssClass" tabindex="1" autofocus="autofocus" />
+            <bs:column default="12" medium="2">
+                <bs:formGroup label="Folder:" field="folder_id">
+                    <ui:dropdownlist name="folder_id" source="ce_folder" display="name" value="id" emptyText="---" class="bs:fieldValidatorCssClass" tabindex="1" />
                 </bs:formGroup>
             </bs:column>
-            <bs:column default="12" medium="6">
+            <bs:column default="12" medium="5">
+                <bs:formGroup label="Title:" field="title">
+                    <ui:textbox name="title" class="bs:fieldValidatorCssClass" tabindex="2" autofocus="autofocus" />
+                </bs:formGroup>
+            </bs:column>
+            <bs:column default="12" medium="5">
                 <bs:formGroup label="Url:" field="url">
                     <ui:toUrlValue name="url">
                         <ui:defaultValue name="url" format="{title}">
-                            <ui:textbox name="url" class="bs:fieldValidatorCssClass" tabindex="2" />
+                            <ui:textbox name="url" class="bs:fieldValidatorCssClass" tabindex="3" />
                         </ui:defaultValue>
                     </ui:toUrlValue>
                 </bs:formGroup>
@@ -118,7 +123,7 @@
             </bs:column>
         </bs:row>
         <bs:formGroup field="content" class="mt-3">
-            <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" tabindex="3" />
+            <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" tabindex="4" />
         </bs:formGroup>
 
         <web:condition when="edit:submit">
