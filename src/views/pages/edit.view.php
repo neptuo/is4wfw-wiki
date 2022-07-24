@@ -125,16 +125,8 @@
             <val:required key="title" /> 
             <val:required key="url" />
 
-            <filter:declare name="pageUnique">
-                <filter:equals name="url" value="edit:url" />
-                <filter:equals name="id" value="var:pageId" not="true" />
-            </filter:declare>
-            <ce:list name="page" filter="filter:pageUnique">
-                <ce:register name="id" />
-                <ui:any items="ce:list">
-                    <val:add key="url" identifier="unique" />
-                </ui:any>
-            </ce:list>
+            <controls:pageUniqueValidator pageId="var:pageId" />
+            <controls:folderUniqueValidator />
         </web:condition>
     </ce:form>
 </edit:form>

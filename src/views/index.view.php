@@ -1,5 +1,6 @@
 <module:use id="var:moduleId">
     <php:register tagPrefix="cehistory" classPath="php.libs.CustomEntity" />
+    <php:register tagPrefix="cefolder" classPath="php.libs.CustomEntity" />
 
     <login:init group="wiki" cookieName="wiki" />
     <web:doctype type="html5" />
@@ -21,6 +22,7 @@
     </template:declare>
 
     <ce:urlResolver name="page" propertyName="url" columnName="url" />
+    <cefolder:urlResolver name="folder" propertyName="url" columnName="url" />
     <cehistory:urlResolver name="pagehistory" propertyName="created_date" columnName="created_date" />
 
     <router:fromPath path="var:relativeUrl">
@@ -57,6 +59,18 @@
                 <pages:edit />
             </login:authorized>
         </router:file>
+        <router:directory path="folders">
+            <router:file path="" name="folderList">
+                <login:authorized any="wiki">
+                    <pages:folderList />
+                </login:authorized>
+            </router:file>
+            <router:file path="new" name="folderNew">
+                <login:authorized any="wiki">
+                    <pages:folderEdit />
+                </login:authorized>
+            </router:file>
+        </router:directory>
         <router:directory path="\ce:url">
             <var:declare name="pageUrl" value="ce:url" />
             <router:file name="edit" path="edit">
@@ -74,6 +88,17 @@
             </router:directory>
             <router:file path="" name="page">
                 <pages:detail url="var:pageUrl" />
+            </router:file>
+        </router:directory>
+        <router:directory path="\cefolder:url">
+            <var:declare name="folderUrl" value="cefolder:url" />
+            <router:file name="folderEdit" path="edit">
+                <login:authorized any="wiki">
+                    <pages:folderEdit url="var:folderUrl" />
+                </login:authorized>
+            </router:file>
+            <router:file path="" name="folder">
+                <pages:folderDetail url="var:folderUrl" />
             </router:file>
         </router:directory>
         <router:file path="*">

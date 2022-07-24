@@ -1,7 +1,8 @@
 <template:declare identifier="navbarItem">
+    <template:attribute name="iconPrefix" default="fa" />
     <li class="nav-item">
         <web:a pageId="template:url" class="nav-link">
-            <fa5:icon name="template:icon" />
+            <fa5:icon prefix="template:iconPrefix" name="template:icon" />
             <web:out text="template:text" />
             <template:content />
         </web:a>
@@ -24,6 +25,7 @@
             <ul class="navbar-nav large-navbar-nav">
                 <template:navbarItem url="route:all" icon="file-alt" text="All pages" />
                 <template:navbarItem url="route:archive" icon="archive" text="Archive" />
+                <template:navbarItem url="route:folderList" icon="folder" iconPrefix="fas" text="Folders" />
                 <template:navbarItem url="route:settings" icon="cog" text="Settings" />
                 <template:navbarItem url="route:about" icon="info-circle" text="About" />
             </ul>

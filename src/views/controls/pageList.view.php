@@ -1,3 +1,5 @@
+<template:attribute name="search" default="true" />
+
 <filter:declare name="page" alias="p">
     <filter:or>
         <filter:like name="content" contains="query:q" />
@@ -9,7 +11,8 @@
     <template:content />
 </filter:declare>
 
-<edit:form submit="search">
+<if:equals name="search" value="template:search" is="true" />
+<edit:form submit="search" if:passed="search">
     <ui:filter>
         <div class="form-row">
             <bs:column>
