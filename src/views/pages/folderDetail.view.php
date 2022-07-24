@@ -48,8 +48,8 @@
                 <ui:dateTimeValue value="cefolder:created_date" format="d.m.Y H:i:s" />
             </small>
         </div>
-        <!-- <controls:pageList search="false">
-
-        </controls:pageList> -->
+        <controls:pageList search="false">
+            <filter:equals name="folder_id" value="cefolder:id" />
+        </controls:pageList>
     </ui:first>
 </cefolder:list>
