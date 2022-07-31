@@ -18,17 +18,17 @@
                         </h1>
                     </div>
                     <div>
-                        <web:a pageId="route:page" class="btn btn-primary text-nowrap">
+                        <controls:pageLink folderUrl="ce:folder_id.url" class="btn btn-primary text-nowrap">
                             View current
-                        </web:a>
+                        </controls:pageLink>
                     </div>
                     <div class="ml-2">
-                        <web:a pageId="route:history" class="btn btn-secondary text-nowrap">
+                        <controls:pageLink folderUrl="ce:folder_id.url" type="history" class="btn btn-secondary text-nowrap">
                             <fa5:icon prefix="fas" name="history" />
                             <span class="d-none d-md-inline">
                                 History
                             </span>
-                        </web:a>
+                        </controls:pageLink>
                     </div>
                 </div>
                 <hr>

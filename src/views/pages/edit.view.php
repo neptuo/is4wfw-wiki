@@ -8,11 +8,13 @@
 </js:script>
 
 <var:declare name="pageId" value="" />
+<var:declare name="folderUrl" value="" />
 <web:condition when="template:url">
     <ce:list name="page" filter-url="template:url">
         <ce:register name="id" />
         <ui:first items="ce:list">
             <var:declare name="pageId" value="ce:id" />
+            <var:declare name="folderUrl" value="ce:folder_id.url" />
         </ui:first>
     </ce:list>
 </web:condition>
@@ -29,6 +31,10 @@
         <ce:save name="pagehistory" />
     </edit:execute>
 </template:declare>
+
+<controls:pageUrl folderUrl="var:folderUrl">
+    <var:declare name="closeUrl" value="template:pageUrl" />
+</controls:pageUrl>
 
 <edit:form submit="save">
     <div class="d-flex align-items-center">
@@ -55,7 +61,9 @@
             </bs:button>
         </div>
         <div class="ml-2">
-            <web:a pageId="route:page" text="Close" class="btn btn-secondary" tabindex="7" />
+            <controls:pageUrl folderUrl="var:folderUrl">
+                <web:a pageId="var:closeUrl" text="Close" class="btn btn-secondary" tabindex="7" />
+            </controls:pageUrl>
         </div>
     </div>
     <hr>
@@ -67,27 +75,25 @@
             <if:equals value="var:pageId" is="" />
         </if:eval>
 
-        <web:condition when="edit:saved">
+        <web:out if:true="edit:saved">
             <web:condition when="post:save" is="save">
-                <web:url pageId="route:edit">
-                    <var:declare name="redirectUrl" value="web:url" />
-                </web:url>
+                <var:declare name="redirectType" value="edit" />
             </web:condition>
             <web:condition when="post:save" is="save-close">
-                <web:url pageId="route:page">
-                    <var:declare name="redirectUrl" value="web:url" />
-                </web:url>
+                <var:declare name="redirectType" value="view" />
             </web:condition>
 
             <template:saveHistory edit_id="edit:id" edit_created_date="ce:changed_date" edit_title="ce:title" edit_url="ce:url" edit_content="ce:content" edit_is_public="ce:is_public" edit_is_archived="ce:is_archived" />
 
-            <web:redirectTo pageId="var:redirectUrl" />
-        </web:condition>
+            <controls:pageUrl folderUrl="var:folderUrl" type="var:redirectType">
+                <web:redirectTo pageId="template:pageUrl" />
+            </controls:pageUrl>
+        </web:out>
 
         <ui:defaultValue name="created_date" format="web:currentTime" />
         <ui:constant name="changed_date" value="web:currentTime" />
 
-        <bs:row>
+        <bs:row class="form-row">
             <bs:column default="12" medium="2">
                 <bs:formGroup label="Folder:" field="folder_id">
                     <ui:dropdownlist name="folder_id" source="ce_folder" display="name" value="id" emptyText="---" class="bs:fieldValidatorCssClass" tabindex="1" />

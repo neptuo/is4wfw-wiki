@@ -65,7 +65,7 @@
         <ui:any items="ce:list">
             <ce:register name="url" />
             <ui:forEach items="ce:list">
-                <web:a pageId="route:page" class="list-group-item list-group-item-action">
+                <controls:pageLink folderUrl="ce:folder_id.url" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">
                             <web:out text="ce:title" />
@@ -83,7 +83,7 @@
                             </small>
                         </web:condition>
                     </div>
-                </web:a>
+                </controls:pageLink>
             </ui:forEach>
         </ui:any>
     </div>

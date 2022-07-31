@@ -71,6 +71,8 @@
                 </login:authorized>
             </router:file>
         </router:directory>
+        
+        <!-- Page routes -->
         <router:directory path="\ce:url">
             <var:declare name="pageUrl" value="ce:url" />
             <router:file name="edit" path="edit">
@@ -90,6 +92,7 @@
                 <pages:detail url="var:pageUrl" />
             </router:file>
         </router:directory>
+
         <router:directory path="\cefolder:url">
             <var:declare name="folderUrl" value="cefolder:url" />
             <router:file name="folderEdit" path="edit">
@@ -100,7 +103,29 @@
             <router:file path="" name="folder">
                 <pages:folderDetail url="var:folderUrl" />
             </router:file>
+            
+            <!-- Page routes (with folder) -->
+            <router:directory path="\ce:url">
+                <var:declare name="pageUrl" value="ce:url" />
+                <router:file name="editWithFolder" path="edit">
+                    <login:authorized any="wiki">
+                        <pages:edit url="var:pageUrl" />
+                    </login:authorized>
+                </router:file>
+                <router:directory path="history">
+                    <router:file name="historyRevisionWithFolder" path="\cehistory:created_date">
+                        <pages:historyRevision url="var:pageUrl" createdDate="cehistory:created_date" />
+                    </router:file>
+                    <router:file name="historyWithFolder" path="">
+                        <pages:history url="var:pageUrl" />
+                    </router:file>
+                </router:directory>
+                <router:file path="" name="pageWithFolder">
+                    <pages:detail url="var:pageUrl" />
+                </router:file>
+            </router:directory>
         </router:directory>
+        
         <router:file path="*">
             <paging:container size="1">
                 <!-- We can't use url resolver because page history may contain multiple entry with the URL -->
