@@ -65,6 +65,15 @@
                     </div>
                     <div>
                         <small class="mr-1">
+                            <paging:container size="1000">
+                                <ce:list name="page" filter-folder_id="cefolder:id" paging="paging:container">
+                                    <fa5:icon prefix="fas" name="copy" />
+                                    <ui:count items="ce:list" />
+                                    <controls:plural value="paging:totalCount" singular="page" />
+                                </ce:list>
+                            </paging:container>
+                        </small>
+                        <small class="mr-1">
                             <fa5:icon prefix="far" name="clock" title="Created at" />
                             <ui:dateTimeValue value="cefolder:created_date" format="d.m.Y H:i:s" />
                         </small>
