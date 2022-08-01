@@ -62,6 +62,7 @@
         <router:directory path="folders">
             <router:file path="" name="folderList">
                 <login:authorized any="wiki">
+                    <template:title value="Folders" />
                     <pages:folderList />
                 </login:authorized>
             </router:file>
