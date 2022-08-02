@@ -21,7 +21,11 @@
         <web:setProperty prefix="web" name="pageTitle" value="utils:pageTitle" />
     </template:declare>
 
-    <ce:urlResolver name="page" propertyName="url" columnName="url" />
+    <filter:declare name="pageWithoutFolder">
+        <filter:null name="folder_id" />
+    </filter:declare>
+    <ce:urlResolver name="page" propertyName="url" columnName="url" filter="filter:pageWithoutFolder" />
+    
     <cefolder:urlResolver name="folder" propertyName="url" columnName="url" />
     <cehistory:urlResolver name="pagehistory" propertyName="created_date" columnName="created_date" />
 
@@ -104,6 +108,13 @@
             <router:file path="" name="folder">
                 <pages:folderDetail url="var:folderUrl" />
             </router:file>
+
+            <filter:declare name="pageWithFolder">
+                <filter:exists from="ce_folder" alias="p" outerColumn="folder_id" innerColumn="id">
+                    <filter:equals name="url" value="cefolder:url" />
+                </filter:exists>
+            </filter:declare>
+            <ce:urlResolver name="page" propertyName="url" columnName="url" filter="filter:pageWithFolder" />
             
             <!-- Page routes (with folder) -->
             <router:directory path="\ce:url">
@@ -135,7 +146,9 @@
                         <ce:list name="page" filter-id="cehistory:id">
                             <ui:first items="ce:list">
                                 <ce:register name="url" />
-                                <web:redirectTo pageId="route:page" />
+                                <controls:pageUrl folderUrl="ce:folder_id.url">
+                                    <web:redirectTo pageId="template:pageUrl" />
+                                </controls:pageUrl>
                             </ui:first>
                         </ce:list>
                     </ui:first>
