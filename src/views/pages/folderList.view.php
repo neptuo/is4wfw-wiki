@@ -18,7 +18,7 @@
                                     Search
                                 </span>
                             </bs:button>
-                            <web:a pageId="route:home" class="btn btn-secondary">
+                            <web:a pageId="route:folderList" class="btn btn-secondary">
                                 <span class="d-inline d-md-none">
                                     <fa5:icon name="times" />
                                 </span>

@@ -1,4 +1,6 @@
 <template:attribute name="search" default="true" />
+<template:attribute name="empty" default="true" />
+<template:attribute name="clearPageId" default="route:home" />
 
 <filter:declare name="page" alias="p">
     <filter:or>
@@ -26,7 +28,7 @@
                                     Search
                                 </span>
                             </bs:button>
-                            <web:a pageId="route:home" class="btn btn-secondary">
+                            <web:a pageId="template:clearPageId" class="btn btn-secondary">
                                 <span class="d-inline d-md-none">
                                     <fa5:icon name="times" />
                                 </span>
@@ -53,16 +55,25 @@
 </edit:form>
 
 <ce:list name="page" filter="filter:page" orderBy-title="asc">
-    <div class="list-group mb-4">
-        <ui:empty items="ce:list">
+    <if:equals name="empty" value="template:empty" is="true" />
+    <ui:empty items="ce:list" if:passed="empty">
+        <div class="list-group mb-4">
             <div class="list-group-item">
                 <fa5:icon name="battery-empty" />
                 <span class="ml-2 text-secondary">
                     Nothing to show here...
                 </span>
             </div>
-        </ui:empty>
-        <ui:any items="ce:list">
+        </div>
+    </ui:empty>
+    <ui:any items="ce:list">
+        <web:out if:stringEmpty="template:header" if:not="true">
+            <h2 class="h1 mx-3" style="font-weight: 300; line-height: 1.2;">
+                <web:out text="cefolder:name" />
+            </h2>
+        </web:out>
+
+        <div class="list-group mb-4">
             <ce:register name="url" />
             <ui:forEach items="ce:list">
                 <controls:pageLink folderUrl="ce:folder_id.url" class="list-group-item list-group-item-action">
@@ -82,9 +93,15 @@
                                 Public
                             </small>
                         </web:condition>
+                        <web:condition when="ce:is_archived">
+                            <small class="mr-1">
+                                <fa5:icon name="archive" />
+                                Archived
+                            </small>
+                        </web:condition>
                     </div>
                 </controls:pageLink>
             </ui:forEach>
-        </ui:any>
-    </div>
+        </div>
+    </ui:any>
 </ce:list>

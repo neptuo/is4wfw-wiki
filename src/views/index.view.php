@@ -25,7 +25,7 @@
         <filter:null name="folder_id" />
     </filter:declare>
     <ce:urlResolver name="page" propertyName="url" columnName="url" filter="filter:pageWithoutFolder" />
-    
+
     <cefolder:urlResolver name="folder" propertyName="url" columnName="url" />
     <cehistory:urlResolver name="pagehistory" propertyName="created_date" columnName="created_date" />
 
@@ -40,7 +40,8 @@
         </router:file>
         <router:file path="all" name="all">
             <template:title value="All pages" />
-            <controls:pageList />
+
+            <controls:pageListGrouped />
         </router:file>
         <router:file path="archive" name="archive">
             <template:title value="Archive" />
