@@ -26,11 +26,11 @@
                 <template:navbarItem url="route:all" icon="file-alt" text="All pages" />
                 <template:navbarItem url="route:archive" icon="archive" text="Archive" />
                 <template:navbarItem url="route:folderList" icon="folder" iconPrefix="fas" text="Folders" />
-                <template:navbarItem url="route:settings" icon="cog" text="Settings" />
-                <template:navbarItem url="route:about" icon="info-circle" text="About" />
             </ul>
             <login:authorized any="wiki">
                 <ul class="navbar-nav large-navbar-nav ml-auto">
+                    <template:navbarItem url="route:settings" icon="cog" text="Settings" />
+                    <template:navbarItem url="route:about" icon="info-circle" text="About" />
                     <template:navbarItem url="route:profile" icon="user">
                         <login:info field="username" />
                     </template:navbarItem>
