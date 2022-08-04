@@ -37,36 +37,37 @@
 </controls:pageUrl>
 
 <edit:form submit="save">
-    <div class="d-flex align-items-center">
-        <div class="flex-grow-1">
-            <h1>
-                <web:condition when="var:pageId">
-                    <template:title value="Edit" />
-                    Edit
-                </web:condition>
-                <web:condition when="var:pageId" isInverted="true">
-                    <template:title value="New" />
-                    New
-                </web:condition>
-            </h1>
+    <controls:stickyHeader>
+        <div class="d-flex align-items-center">
+            <div class="flex-grow-1 text-truncate">
+                <h1 class="text-truncate">
+                    <web:condition when="var:pageId">
+                        <template:title value="Edit" />
+                        Edit
+                    </web:condition>
+                    <web:condition when="var:pageId" isInverted="true">
+                        <template:title value="New" />
+                        New
+                    </web:condition>
+                </h1>
+            </div>
+            <div>
+                <bs:button name="save" value="save" tabindex="5">
+                    Save
+                </bs:button>
+            </div>
+            <div class="ml-2">
+                <bs:button name="save" value="save-close" tabindex="6" class="text-nowrap">
+                    Save and close
+                </bs:button>
+            </div>
+            <div class="ml-2">
+                <controls:pageUrl folderUrl="var:folderUrl">
+                    <web:a pageId="var:closeUrl" text="Close" class="btn btn-secondary" tabindex="7" />
+                </controls:pageUrl>
+            </div>
         </div>
-        <div>
-            <bs:button name="save" value="save" tabindex="5">
-                Save
-            </bs:button>
-        </div>
-        <div class="ml-2">
-            <bs:button name="save" value="save-close" tabindex="6">
-                Save and close
-            </bs:button>
-        </div>
-        <div class="ml-2">
-            <controls:pageUrl folderUrl="var:folderUrl">
-                <web:a pageId="var:closeUrl" text="Close" class="btn btn-secondary" tabindex="7" />
-            </controls:pageUrl>
-        </div>
-    </div>
-    <hr>
+    </controls:stickyHeader>
     <ce:form name="page" key-id="var:pageId">
         <if:eval name="saveHistoryInSave">
             <if:equals value="var:pageId" is="" not="true" />
