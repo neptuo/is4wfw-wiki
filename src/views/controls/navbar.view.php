@@ -9,7 +9,7 @@
     </li>
 </template:declare>
 
-<nav class="navbar navbar-inverse navbar navbar-expand-lg navbar-dark bg-dark sticky-top main-navbar">
+<nav class="navbar navbar-inverse navbar navbar-expand-lg navbar-dark bg-dark sticky-top main-navbar" style="z-index: 1022;">
     <bs:container>
         <web:a pageId="route:home" class="navbar-brand">
             <var:declare name="brand" value="var:wiki.name" />
