@@ -49,6 +49,12 @@
             <template:title value="Archive" />
             <pages:archive />
         </router:file>
+        <router:file path="favorites" name="favorites">
+            <template:title value="Your favorites" />
+            <controls:pageListGrouped>
+                <filter:in name="id" values="var:favorites" />
+            </controls:pageListGrouped>
+        </router:file>
         <router:file path="settings" name="settings">
             <template:title value="Settings" />
             <pages:settings />

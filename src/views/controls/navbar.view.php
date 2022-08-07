@@ -25,6 +25,7 @@
             <ul class="navbar-nav large-navbar-nav">
                 <template:navbarItem url="route:all" icon="file-alt" text="All pages" />
                 <template:navbarItem url="route:archive" icon="archive" text="Archive" />
+                <template:navbarItem url="route:favorites" icon="star" text="Your favorites" />
                 <template:navbarItem url="route:folderList" icon="folder" iconPrefix="fas" text="Folders" />
             </ul>
             <login:authorized any="wiki">
