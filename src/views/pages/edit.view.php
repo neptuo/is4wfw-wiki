@@ -69,13 +69,6 @@
         </div>
     </controls:stickyHeader>
     <ce:form name="page" key-id="var:pageId">
-        <if:eval name="saveHistoryInSave">
-            <if:equals value="var:pageId" is="" not="true" />
-        </if:eval>
-        <if:eval name="saveHistoryInSaved">
-            <if:equals value="var:pageId" is="" />
-        </if:eval>
-
         <web:out if:true="edit:saved">
             <web:condition when="post:save" is="save">
                 <var:declare name="redirectType" value="edit" />
@@ -84,11 +77,14 @@
                 <var:declare name="redirectType" value="view" />
             </web:condition>
 
+            <controls:pageUrl folderUrl="var:folderUrl" type="var:redirectType">
+                <var:declare name="redirectUrl" value="template:pageUrl" />    
+            </controls:pageUrl>
+
+            <!-- Save history rewrites edit model -->
             <template:saveHistory edit_id="edit:id" edit_created_date="ce:changed_date" edit_title="ce:title" edit_url="ce:url" edit_content="ce:content" edit_is_public="ce:is_public" edit_is_archived="ce:is_archived" />
 
-            <controls:pageUrl folderUrl="var:folderUrl" type="var:redirectType">
-                <web:redirectTo pageId="template:pageUrl" />
-            </controls:pageUrl>
+            <web:redirectTo pageId="var:redirectUrl" />
         </web:out>
 
         <ui:defaultValue name="created_date" format="web:currentTime" />
