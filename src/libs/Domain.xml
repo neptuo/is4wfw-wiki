@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<taglib xmlns="http://schemas.neptuo.com/xsd/is4wfw/taglib.xsd">
+  <namespace>wiki</namespace>
+  <comment>
+    Library for wiki domian logic.
+  </comment>
+  <tag>
+    <name>addToFavorites</name>
+    <function>addToFavorites</function>
+    <attribute>
+      <name>pageId</name>
+      <type>number</type>
+      <required />
+      <comment>Page id to add to the favorites variable.</comment>
+    </attribute>
+    <comment>
+      Adds "pageId" to favorites variable.
+    </comment>
+  </tag>
+  <tag>
+    <name>removeFromFavorites</name>
+    <function>removeFromFavorites</function>
+    <attribute>
+      <name>pageId</name>
+      <type>number</type>
+      <required />
+      <comment>Page id to remove from the favorites variable.</comment>
+    </attribute>
+    <comment>
+      Removes "pageId" from favorites variable.
+    </comment>
+  </tag>
+</taglib>

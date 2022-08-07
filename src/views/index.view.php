@@ -2,6 +2,8 @@
     <php:register tagPrefix="cehistory" classPath="php.libs.CustomEntity" />
     <php:register tagPrefix="cefolder" classPath="php.libs.CustomEntity" />
 
+    <var:use name="favorites" scope="user" />
+
     <login:init group="wiki" cookieName="wiki" />
     <web:doctype type="html5" />
     <web:head>

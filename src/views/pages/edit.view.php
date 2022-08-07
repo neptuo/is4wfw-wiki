@@ -127,6 +127,16 @@
                         Archived
                     </label>
                 </div>
+                <web:out if:stringEmpty="var:pageId" if:not="true">
+                    <div class="form-check-inline">
+                        <edit:prefix name="user">
+                            <ui:checkbox name="is_favorite" class="form-check-input" id="cbx-favorite" />
+                            <label class="form-check-label" for="cbx-favorite">
+                                Your favorite
+                            </label>
+                        </edit:prefix>
+                    </div>
+                </web:out>
             </bs:column>
         </bs:row>
         <bs:formGroup field="content" class="mt-3">
@@ -141,4 +151,35 @@
             <controls:folderUniqueValidator />
         </web:condition>
     </ce:form>
+    
+    <web:out if:stringEmpty="var:pageId" if:not="true">
+        <web:out if:true="edit:load">
+            <utils:splitToArray output="var:favoritesArray" value="var:favorites" separator="," />
+            <if:arrayContains name="isFavorite" value="var:favoritesArray" item="var:pageId" />
+            <edit:prefix name="user" if:passed="isFavorite">
+                <edit:set name="is_favorite" value="1" />
+            </edit:prefix>
+        </web:out>
+        <web:out if:true="edit:save">
+            <edit:prefix name="user">
+                <if:eval name="addToFavorites">
+                    <if:greater value="edit:is_favorite" than="0" />
+                    <if:not>
+                        <if:arrayContains value="var:favoritesArray" item="var:pageId" />
+                    </if:not>
+                </if:eval>
+                <web:out if:passed="addToFavorites">
+                    <domain:addToFavorites pageId="var:pageId" />
+                </web:out>
+
+                <if:eval name="removeFromFavorites">
+                    <if:lower value="edit:is_favorite" than="1" />
+                    <if:arrayContains value="var:favoritesArray" item="var:pageId" />
+                </if:eval>
+                <web:out if:passed="removeFromFavorites">
+                    <domain:removeFromFavorites pageId="var:pageId" />
+                </web:out>
+            </edit:prefix>
+        </web:out>
+    </web:out>
 </edit:form>

@@ -12,6 +12,7 @@
             $php->register("pages", "php.libs.TemplateDirectory", ["path" => $module->getViewsPath() . "pages"]);
             $php->register("controls", "php.libs.TemplateDirectory", ["path" => $module->getViewsPath() . "controls"]);
             $php->register("md", $module->alias . ".libs.Markdown");
+            $php->register("domain", $module->alias . ".libs.Domain");
             $var = $php->autolib("var");
             $var->setValue("relativeUrl", $params["relativeUrl"]);
             $var->setValue("moduleId", $module->id);
