@@ -4,10 +4,10 @@
 
 <login:authorized any="wiki">
     <web:condition when="post:delete">
-        <ce:deleter name="page" url="template:url">
+        <cepage:deleter url="template:url">
             <var:declare name="message" scope="temp" value="Page has been deleted." />
             <web:redirectTo pageId="route:home" />
-        </ce:deleter>
+        </cepage:deleter>
     </web:condition>
 </login:authorized>
 <filter:declare name="detail" alias="p">
@@ -16,22 +16,22 @@
         <filter:equals name="is_public" value="1" />
     </login:authorized>
 </filter:declare>
-<ce:list name="page" filter="filter:detail">
-    <ui:empty items="ce:list">
+<cepage:list filter="filter:detail">
+    <ui:empty items="cepage:list">
         Not found
     </ui:empty>
-    <ui:first items="ce:list">
-        <template:title value="ce:title" />
+    <ui:first items="cepage:list">
+        <template:title value="cepage:title" />
         <controls:stickyHeader>
             <div class="d-flex align-items-center">
                 <div class="flex-grow-1 text-truncate">
                     <h1 class="mb-0 text-truncate">
-                        <web:out text="ce:title" />
+                        <web:out text="cepage:title" />
                     </h1>
                 </div>
                 <login:authorized any="wiki">
                     <div>
-                        <controls:pageLink folderUrl="ce:folder_id.url" type="history" class="btn btn-secondary text-nowrap">
+                        <controls:pageLink folderUrl="cepage:folder_id.url" type="history" class="btn btn-secondary text-nowrap">
                             <fa5:icon prefix="fas" name="history" />
                             <span class="d-none d-md-inline">
                                 History
@@ -39,7 +39,7 @@
                         </controls:pageLink>
                     </div>
                     <div class="ml-2">
-                        <controls:pageLink folderUrl="ce:folder_id.url" type="edit" class="btn btn-primary text-nowrap">
+                        <controls:pageLink folderUrl="cepage:folder_id.url" type="edit" class="btn btn-primary text-nowrap">
                             <fa5:icon name="pen" />
                             <span class="d-none d-md-inline">
                                 Edit
@@ -61,9 +61,9 @@
             <div>
                 <small class="mr-1">
                     <fa5:icon prefix="far" name="clock" title="Changed at" />
-                    <ui:dateTimeValue value="ce:changed_date" format="d.m.Y H:i:s" />
+                    <ui:dateTimeValue value="cepage:changed_date" format="d.m.Y H:i:s" />
                 </small>
-                <web:condition when="ce:is_public">
+                <web:condition when="cepage:is_public">
                     <small class="mr-1">
                         <fa5:icon name="user-secret" />
                         Public
@@ -72,7 +72,7 @@
             </div>
         </controls:stickyHeader>
         <div class="markdown-body">
-            <md:render source="ce:content" />
+            <md:render source="cepage:content" />
         </div>
     </ui:first>
-</ce:list>
+</cepage:list>

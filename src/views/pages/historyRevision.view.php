@@ -4,12 +4,12 @@
         <filter:equals name="is_public" value="1" />
     </login:authorized>
 </filter:declare>
-<ce:list name="page" filter="filter:detail">
-    <ui:empty items="ce:list">
+<cepage:list filter="filter:detail">
+    <ui:empty items="cepage:list">
         Not found
     </ui:empty>
-    <ui:first items="ce:list">
-        <cehistory:list name="pagehistory" filter-id="ce:id" filter-created_date="template:createdDate">
+    <ui:first items="cepage:list">
+        <cehistory:list filter-id="cepage:id" filter-created_date="template:createdDate">
             <ui:first items="cehistory:list">
                 <div class="d-flex align-items-center">
                     <div class="flex-grow-1 text-truncate">
@@ -18,12 +18,12 @@
                         </h1>
                     </div>
                     <div>
-                        <controls:pageLink folderUrl="ce:folder_id.url" class="btn btn-primary text-nowrap">
+                        <controls:pageLink folderUrl="cepage:folder_id.url" class="btn btn-primary text-nowrap">
                             View current
                         </controls:pageLink>
                     </div>
                     <div class="ml-2">
-                        <controls:pageLink folderUrl="ce:folder_id.url" type="history" class="btn btn-secondary text-nowrap">
+                        <controls:pageLink folderUrl="cepage:folder_id.url" type="history" class="btn btn-secondary text-nowrap">
                             <fa5:icon prefix="fas" name="history" />
                             <span class="d-none d-md-inline">
                                 History
@@ -35,7 +35,7 @@
 
                 <edit:form submit="sadkjalskdjalskdj">
                     <ui:editable is="false">
-                        <cehistory:form name="pagehistory" key-id="ce:id" key-created_date="template:createdDate">
+                        <cehistory:form key-id="cepage:id" key-created_date="template:createdDate">
                             <bs:row>
                                 <bs:column default="12" medium="6">
                                     <bs:formGroup label="Title:" field="title">
@@ -71,4 +71,4 @@
             </ui:first>
         </cehistory:list>
     </ui:first>
-</ce:list>
+</cepage:list>

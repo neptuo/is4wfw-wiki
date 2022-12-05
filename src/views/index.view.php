@@ -1,6 +1,10 @@
 <module:use id="var:moduleId">
-    <php:register tagPrefix="cehistory" classPath="php.libs.CustomEntity" />
-    <php:register tagPrefix="cefolder" classPath="php.libs.CustomEntity" />
+    <php:lazy cepage="php.libs.CustomEntity" />
+    <php:attribute prefix="cepage" tag="*" name="name" value="page" />
+    <php:lazy cehistory="php.libs.CustomEntity" />
+    <php:attribute prefix="cehistory" tag="*" name="name" value="pagehistory" />
+    <php:lazy cefolder="php.libs.CustomEntity" />
+    <php:attribute prefix="cefolder" tag="*" name="name" value="folder" />
 
     <var:use name="favorites" scope="user" />
 
@@ -26,10 +30,10 @@
     <filter:declare name="pageWithoutFolder">
         <filter:null name="folder_id" />
     </filter:declare>
-    <ce:urlResolver name="page" propertyName="url" columnName="url" filter="filter:pageWithoutFolder" />
+    <cepage:urlResolver propertyName="url" columnName="url" filter="filter:pageWithoutFolder" />
 
-    <cefolder:urlResolver name="folder" propertyName="url" columnName="url" />
-    <cehistory:urlResolver name="pagehistory" propertyName="created_date" columnName="created_date" />
+    <cefolder:urlResolver propertyName="url" columnName="url" />
+    <cehistory:urlResolver propertyName="created_date" columnName="created_date" />
 
     <router:fromPath path="var:relativeUrl">
         <router:file path="" name="home">
@@ -87,8 +91,8 @@
         </router:directory>
         
         <!-- Page routes -->
-        <router:directory path="\ce:url">
-            <var:declare name="pageUrl" value="ce:url" />
+        <router:directory path="\cepage:url">
+            <var:declare name="pageUrl" value="cepage:url" />
             <router:file name="edit" path="edit">
                 <login:authorized any="wiki">
                     <pages:edit url="var:pageUrl" />
@@ -123,11 +127,11 @@
                     <filter:equals name="url" value="cefolder:url" />
                 </filter:exists>
             </filter:declare>
-            <ce:urlResolver name="page" propertyName="url" columnName="url" filter="filter:pageWithFolder" />
+            <cepage:urlResolver propertyName="url" columnName="url" filter="filter:pageWithFolder" />
             
             <!-- Page routes (with folder) -->
-            <router:directory path="\ce:url">
-                <var:declare name="pageUrl" value="ce:url" />
+            <router:directory path="\cepage:url">
+                <var:declare name="pageUrl" value="cepage:url" />
                 <router:file name="editWithFolder" path="edit">
                     <login:authorized any="wiki">
                         <pages:edit url="var:pageUrl" />
@@ -150,16 +154,16 @@
         <router:file path="*">
             <paging:container size="1">
                 <!-- We can't use url resolver because page history may contain multiple entry with the URL -->
-                <cehistory:list name="pagehistory" filter-url="var:relativeUrl" paging="paging:container">
+                <cehistory:list filter-url="var:relativeUrl" paging="paging:container">
                     <ui:first items="cehistory:list">
-                        <ce:list name="page" filter-id="cehistory:id">
-                            <ui:first items="ce:list">
-                                <ce:register name="url" />
-                                <controls:pageUrl folderUrl="ce:folder_id.url">
+                        <cepage:list filter-id="cehistory:id">
+                            <ui:first items="cepage:list">
+                                <cepage:register name="url" />
+                                <controls:pageUrl folderUrl="cepage:folder_id.url">
                                     <web:redirectTo pageId="template:pageUrl" />
                                 </controls:pageUrl>
                             </ui:first>
-                        </ce:list>
+                        </cepage:list>
                     </ui:first>
                 </cehistory:list>
             </paging:container>

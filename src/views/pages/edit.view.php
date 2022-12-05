@@ -10,13 +10,13 @@
 <var:declare name="pageId" value="" />
 <var:declare name="folderUrl" value="" />
 <web:condition when="template:url">
-    <ce:list name="page" filter-url="template:url">
-        <ce:register name="id" />
-        <ui:first items="ce:list">
-            <var:declare name="pageId" value="ce:id" />
-            <var:declare name="folderUrl" value="ce:folder_id.url" />
+    <cepage:list filter-url="template:url">
+        <cepage:register name="id" />
+        <ui:first items="cepage:list">
+            <var:declare name="pageId" value="cepage:id" />
+            <var:declare name="folderUrl" value="cepage:folder_id.url" />
         </ui:first>
-    </ce:list>
+    </cepage:list>
 </web:condition>
 
 <template:declare identifier="saveHistory">
@@ -28,7 +28,7 @@
         <edit:set name="content" value="template:edit_content" />
         <edit:set name="is_public" value="template:edit_is_public" />
         <edit:set name="is_archived" value="template:edit_is_archived" />
-        <ce:save name="pagehistory" />
+        <cehistory:save name="pagehistory" />
     </edit:execute>
 </template:declare>
 
@@ -68,7 +68,7 @@
             </div>
         </div>
     </controls:stickyHeader>
-    <ce:form name="page" key-id="var:pageId">
+    <cepage:form key-id="var:pageId">
         <web:out if:true="edit:saved">
             <web:condition when="post:save" is="save">
                 <var:declare name="redirectType" value="edit" />
@@ -82,7 +82,7 @@
             </controls:pageUrl>
 
             <!-- Save history rewrites edit model -->
-            <template:saveHistory edit_id="edit:id" edit_created_date="ce:changed_date" edit_title="ce:title" edit_url="ce:url" edit_content="ce:content" edit_is_public="ce:is_public" edit_is_archived="ce:is_archived" />
+            <template:saveHistory edit_id="edit:id" edit_created_date="cepage:changed_date" edit_title="cepage:title" edit_url="cepage:url" edit_content="cepage:content" edit_is_public="cepage:is_public" edit_is_archived="cepage:is_archived" />
 
             <web:redirectTo pageId="var:redirectUrl" />
         </web:out>
@@ -146,7 +146,7 @@
             <controls:pageUniqueValidator pageId="var:pageId" />
             <controls:folderUniqueValidator />
         </web:condition>
-    </ce:form>
+    </cepage:form>
     
     <web:out if:stringEmpty="var:pageId" if:not="true">
         <web:out if:true="edit:load">

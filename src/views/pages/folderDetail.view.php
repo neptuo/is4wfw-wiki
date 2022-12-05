@@ -1,15 +1,15 @@
 <login:authorized any="wiki">
     <web:condition when="post:delete">
-        <cefolder:deleter name="page" url="template:url">
+        <cepage:deleter url="template:url">
             <var:declare name="message" scope="temp" value="Folder has been deleted." />
             <web:redirectTo pageId="route:folderList" />
-        </cefolder:deleter>
+        </cepage:deleter>
     </web:condition>
 </login:authorized>
 <filter:declare name="detail" alias="f">
     <filter:equals name="url" value="template:url" />
 </filter:declare>
-<cefolder:list name="folder" filter="filter:detail">
+<cefolder:list filter="filter:detail">
     <ui:empty items="cefolder:list">
         Not found
     </ui:empty>

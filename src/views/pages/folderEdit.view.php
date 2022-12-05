@@ -1,11 +1,12 @@
 <var:declare name="folderId" value="" />
+
 <web:condition when="template:url">
-    <ce:list name="folder" filter-url="template:url">
-        <ce:register name="id" />
-        <ui:first items="ce:list">
-            <var:declare name="folderId" value="ce:id" />
+    <cefolder:list filter-url="template:url">
+        <cefolder:register name="id" />
+        <ui:first items="cefolder:list">
+            <var:declare name="folderId" value="cefolder:id" />
         </ui:first>
-    </ce:list>
+    </cefolder:list>
 </web:condition>
 
 <edit:form submit="save">
@@ -38,7 +39,7 @@
             </div>
         </div>
     </controls:stickyHeader>
-    <ce:form name="folder" key-id="var:folderId">
+    <cefolder:form key-id="var:folderId">
         <web:condition when="edit:saved">
             <web:condition when="post:save" is="save">
                 <web:redirectTo pageId="route:folderEdit" />
@@ -74,5 +75,5 @@
             <controls:pageUniqueValidator />
             <controls:folderUniqueValidator folderId="var:folderId" />
         </web:condition>
-    </ce:form>
+    </cefolder:form>
 </edit:form>

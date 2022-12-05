@@ -44,7 +44,7 @@
     </ui:filter>
 </edit:form>
 
-<cefolder:list name="folder" filter="filter:folder" orderBy-name="asc">
+<cefolder:list filter="filter:folder" orderBy-name="asc">
     <div class="list-group mb-4">
         <ui:empty items="cefolder:list">
             <div class="list-group-item">
@@ -66,11 +66,11 @@
                     <div>
                         <small class="mr-1">
                             <paging:container size="1000">
-                                <ce:list name="page" filter-folder_id="cefolder:id" paging="paging:container">
+                                <cepage:list filter-folder_id="cefolder:id" paging="paging:container">
                                     <fa5:icon prefix="fas" name="copy" />
-                                    <ui:count items="ce:list" />
+                                    <ui:count items="cepage:list" />
                                     <controls:plural value="paging:totalCount" singular="page" />
-                                </ce:list>
+                                </cepage:list>
                             </paging:container>
                         </small>
                         <small class="mr-1">

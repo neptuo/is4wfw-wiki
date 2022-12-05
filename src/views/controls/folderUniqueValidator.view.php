@@ -2,9 +2,9 @@
     <filter:equals name="url" value="edit:url" />
     <filter:equals name="id" value="template:folderId" not="true" />
 </filter:declare>
-<ce:list name="folder" filter="filter:folderUnique">
-    <ce:register name="id" />
-    <ui:any items="ce:list">
+<cefolder:list filter="filter:folderUnique">
+    <cefolder:register name="id" />
+    <ui:any items="cefolder:list">
         <val:add key="url" identifier="unique" />
     </ui:any>
-</ce:list>
+</cefolder:list>

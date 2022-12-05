@@ -54,9 +54,9 @@
     </ui:filter>
 </edit:form>
 
-<ce:list name="page" filter="filter:page" orderBy-title="asc">
+<cepage:list filter="filter:page" orderBy-title="asc">
     <if:equals name="empty" value="template:empty" is="true" />
-    <ui:empty items="ce:list" if:passed="empty">
+    <ui:empty items="cepage:list" if:passed="empty">
         <div class="list-group mb-4">
             <div class="list-group-item">
                 <fa5:icon name="battery-empty" />
@@ -66,7 +66,7 @@
             </div>
         </div>
     </ui:empty>
-    <ui:any items="ce:list">
+    <ui:any items="cepage:list">
         <web:out if:stringEmpty="template:header" if:not="true">
             <h2 class="h1 mx-3" style="font-weight: 300; line-height: 1.2;">
                 <web:out text="cefolder:name" />
@@ -74,26 +74,26 @@
         </web:out>
 
         <div class="list-group mb-4">
-            <ce:register name="url" />
-            <ui:forEach items="ce:list">
-                <controls:pageLink folderUrl="ce:folder_id.url" class="list-group-item list-group-item-action">
+            <cepage:register name="url" />
+            <ui:forEach items="cepage:list">
+                <controls:pageLink folderUrl="cepage:folder_id.url" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">
-                            <web:out text="ce:title" />
+                            <web:out text="cepage:title" />
                         </h5>
                     </div>
                     <div>
                         <small class="mr-1">
                             <fa5:icon prefix="far" name="clock" title="Changed at" />
-                            <ui:dateTimeValue value="ce:changed_date" format="d.m.Y H:i:s" />
+                            <ui:dateTimeValue value="cepage:changed_date" format="d.m.Y H:i:s" />
                         </small>
-                        <web:condition when="ce:is_public">
+                        <web:condition when="cepage:is_public">
                             <small class="mr-1">
                                 <fa5:icon name="user-secret" />
                                 Public
                             </small>
                         </web:condition>
-                        <web:condition when="ce:is_archived">
+                        <web:condition when="cepage:is_archived">
                             <small class="mr-1">
                                 <fa5:icon name="archive" />
                                 Archived
@@ -113,4 +113,4 @@
             </ui:forEach>
         </div>
     </ui:any>
-</ce:list>
+</cepage:list>
