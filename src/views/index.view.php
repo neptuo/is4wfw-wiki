@@ -152,22 +152,6 @@
         </router:directory>
         
         <router:file path="*">
-            <paging:container size="1">
-                <!-- We can't use url resolver because page history may contain multiple entry with the URL -->
-                <cehistory:list filter-url="var:relativeUrl" paging="paging:container">
-                    <ui:first items="cehistory:list">
-                        <cepage:list filter-id="cehistory:id">
-                            <ui:first items="cepage:list">
-                                <cepage:register name="url" />
-                                <controls:pageUrl folderUrl="cepage:folder_id.url">
-                                    <web:redirectTo pageId="template:pageUrl" />
-                                </controls:pageUrl>
-                            </ui:first>
-                        </cepage:list>
-                    </ui:first>
-                </cehistory:list>
-            </paging:container>
-
             Not found
         </router:file>
     </router:fromPath>
