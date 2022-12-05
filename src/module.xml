@@ -4,7 +4,7 @@
     <name>is4wfw wiki</name>
     <version>v0.0</version>
     <is4wfw>
-        <minVersion>v342.0</minVersion>
+        <minVersion>v342.1</minVersion>
     </is4wfw>
     <gitHub>
         <repository>
