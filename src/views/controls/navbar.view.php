@@ -12,6 +12,9 @@
 <nav class="navbar navbar-inverse navbar navbar-expand-lg navbar-dark bg-dark sticky-top main-navbar" style="z-index: 1022;">
     <bs:container>
         <web:a pageId="route:home" class="navbar-brand">
+            <web:out if:stringEmpty="var:wiki.icon.id" if:not="true">
+                <img src="~/file.php?rid=<web:out text="var:wiki.icon.id" />" width="24" height="24" />
+            </web:out>
             <var:declare name="brand" value="var:wiki.name" />
             <web:condition when="var:brand" isInverted="true">
                 <var:declare name="brand" value="Wiki" />

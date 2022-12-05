@@ -18,6 +18,9 @@
                 outline: none;
             }
         </style>
+        <web:out if:stringEmpty="var:wiki.icon.id" if:not="true">
+            <img:favicon fileId="var:wiki.icon.id" />
+        </web:out>
     </web:head>
     <bs:resources />
     <fa5:resources />
