@@ -150,10 +150,6 @@
                 </router:file>
             </router:directory>
         </router:directory>
-        
-        <router:file path="*">
-            Not found
-        </router:file>
     </router:fromPath>
 
     <controls:auth />
@@ -167,6 +163,10 @@
             </bs:alert>
         </web:condition>
 
+        <!-- if:false can't be used here -->
+        <web:condition when="router:hasMatch" isInverted="true">
+            Not Found 
+        </web:condition>
         <router:render />
     </bs:container>
 </module:use>
