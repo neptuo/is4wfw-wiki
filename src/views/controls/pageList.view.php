@@ -101,7 +101,7 @@
                         </web:condition>
                         
                         <utils:splitToArray output="var:favoritesArray" value="var:favorites" separator="," />
-                        <if:arrayContains name="isFavorite" value="var:favoritesArray" item="ce:id" />
+                        <if:arrayContains name="isFavorite" value="var:favoritesArray" item="cepage:id" />
                         <web:out if:passed="isFavorite">
                             <small class="mr-1">
                                 <fa5:icon name="star" />

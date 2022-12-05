@@ -56,7 +56,8 @@
         <router:file path="favorites" name="favorites">
             <template:title value="Your favorites" />
             <controls:pageListGrouped>
-                <filter:in name="id" values="var:favorites" />
+                <filter:in name="id" values="var:favorites" if:stringEmpty="var:favorites" if:not="true" />
+                <filter:in name="id" values="-" if:stringEmpty="var:favorites" />
             </controls:pageListGrouped>
         </router:file>
         <router:file path="settings" name="settings">
