@@ -51,6 +51,7 @@
             "|",
             "link",
             "image",
+            "upload-image",
             "horizontal-rule",
             "|",
             "guide",

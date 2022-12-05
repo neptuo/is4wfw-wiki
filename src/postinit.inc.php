@@ -17,6 +17,10 @@
             $var->setValue("relativeUrl", $params["relativeUrl"]);
             $var->setValue("moduleId", $module->id);
 
+            if (StringUtils::startsWith($params["relativeUrl"], "api")) {
+                return "API " . $params["relativeUrl"];
+            }
+
             $indexContent = file_get_contents($module->getViewsPath() . "index.view.php");
             $pageContent = $web->executeTemplateContent(["modules", $module->alias, "index." . sha1($indexContent)], $indexContent);
             return $pageContent;

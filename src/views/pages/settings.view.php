@@ -2,10 +2,12 @@
     <web:condition when="edit:load">
         <edit:set name="name" value="var:wiki.name" />
         <edit:set name="icon" value="var:wiki.icon.id" />
+        <edit:set name="upload" value="var:wiki.upload.id" />
     </web:condition>
     <web:condition when="edit:save">
         <var:declare name="wiki.name" value="edit:name" scope="application" />
         <var:declare name="wiki.icon.id" value="edit:icon" scope="application" />
+        <var:declare name="wiki.upload.id" value="edit:upload" scope="application" />
     </web:condition>
     <web:condition when="edit:saved">
         <web:redirectToSelf />
@@ -16,6 +18,9 @@
     </bs:formGroup>
     <bs:formGroup label="Instance icon file id:" field="icon">
         <ui:textbox name="icon" class="bs:fieldValidatorCssClass" />
+    </bs:formGroup>
+    <bs:formGroup label="Instance uploads directory id:" field="upload">
+        <ui:textbox name="upload" class="bs:fieldValidatorCssClass" />
     </bs:formGroup>
     <bs:formGroup>
         <bs:button name="save" text="Save" />
