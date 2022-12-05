@@ -1,12 +1,3 @@
-<js:style path="https://unpkg.com/easymde/dist/easymde.min.css" />
-<js:script path="https://unpkg.com/easymde/dist/easymde.min.js" placement="tail" />
-<js:script placement="tail">
-    const easyMDE = new EasyMDE({
-        element: document.getElementById('md-content'),
-        autoDownloadFontAwesome: false
-    });
-</js:script>
-
 <var:declare name="pageId" value="" />
 <var:declare name="folderUrl" value="" />
 <web:condition when="template:url">
@@ -18,6 +9,62 @@
         </ui:first>
     </cepage:list>
 </web:condition>
+
+<js:style path="https://unpkg.com/easymde/dist/easymde.min.css" />
+<js:script path="https://unpkg.com/easymde/dist/easymde.min.js" placement="tail" />
+<js:script placement="tail">
+    const easyMDE = new EasyMDE({
+        element: document.getElementById('md-content'),
+        autoDownloadFontAwesome: false,
+        shortcuts: {
+            save: "Cmd-S"
+        },
+        autosave: {
+            enabled: true,
+            uniqueId: "page-<web:out text="var:pageId" />",
+            delay: 1000,
+            submit_delay: 5000,
+            timeFormat: {
+                locale: 'en-US',
+                format: {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                },
+            },
+            text: "Autosaved: "
+        },
+        toolbar: [
+            "heading-2",
+            "heading-3",
+            "|",
+            "bold",
+            "italic",
+            "strikethrough",
+            "|",
+            "unordered-list",
+            "ordered-list",
+            "code",
+            "quote",
+            "|",
+            "link",
+            "image",
+            "horizontal-rule",
+            "|",
+            "guide",
+            {
+                name: "save",
+                className: "fa fa-check d-none",
+                title: "Save",
+                action: function (editor) {
+                    document.querySelector("button[name=save]").click();
+                }
+            }
+        ],
+    });
+</js:script>
 
 <template:declare identifier="saveHistory">
     <edit:execute>
@@ -36,7 +83,7 @@
     <var:declare name="closeUrl" value="template:pageUrl" />
 </controls:pageUrl>
 
-<edit:form submit="save">
+<edit:form id="page-edit-form" submit="save">
     <controls:stickyHeader>
         <div class="d-flex align-items-center">
             <div class="flex-grow-1 text-truncate">
