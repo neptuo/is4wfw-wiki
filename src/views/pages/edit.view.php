@@ -19,6 +19,19 @@
         shortcuts: {
             save: "Cmd-S"
         },
+        uploadImage:true,
+        imageUploadFunction: async (file, onSuccess, onError) => {
+            const data = new FormData()
+            data.append('file', file)
+            data.append('pageId', '<web:out text="var:pageId" />')
+
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                body: data
+            })
+
+            onSuccess("/file.php?rid=3");
+        },
         autosave: {
             enabled: true,
             uniqueId: "page-<web:out text="var:pageId" />",
