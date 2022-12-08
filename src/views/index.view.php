@@ -6,24 +6,10 @@
     <php:lazy cefolder="php.libs.CustomEntity" />
     <php:attribute prefix="cefolder" tag="*" name="name" value="folder" />
 
+    <var:declare name="ajax" value="php:false" />
     <var:use name="favorites" scope="user" />
 
-    <login:init group="wiki" cookieName="wiki" />
-    <web:doctype type="html5" />
-    <web:head>
-        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no" />
-        <style>
-            .main-navbar .navbar-toggler {
-                border: none;
-                outline: none;
-            }
-        </style>
-        <web:out if:stringEmpty="var:wiki.icon.id" if:not="true">
-            <img:favicon fileId="var:wiki.icon.id" />
-        </web:out>
-    </web:head>
-    <bs:resources />
-    <fa5:resources />
+    <login:init group="wiki" />
 
     <template:declare identifier="title">
         <utils:concat output="pageTitle" value1="template:value" value2=" - " value3="var:brand" />
@@ -34,7 +20,6 @@
         <filter:null name="folder_id" />
     </filter:declare>
     <cepage:urlResolver propertyName="url" columnName="url" filter="filter:pageWithoutFolder" />
-
     <cefolder:urlResolver propertyName="url" columnName="url" />
     <cehistory:urlResolver propertyName="created_date" columnName="created_date" />
 
@@ -94,7 +79,7 @@
             </router:file>
         </router:directory>
         
-        <!-- Page routes -->
+        <web:lookless><!-- Page routes --></web:lookless>
         <router:directory path="\cepage:url">
             <var:declare name="pageUrl" value="cepage:url" />
             <router:file name="edit" path="edit">
@@ -102,6 +87,18 @@
                     <pages:edit url="var:pageUrl" />
                 </login:authorized>
             </router:file>
+            <router:directory path="ajax">
+                <web:out if:true="router:isEvaluate">
+                    <var:declare name="ajax" value="php:true" />
+                </web:out>
+                <router:file path="upload">
+                    <json:output>
+                        <json:object>
+                            <json:key name="url" value="~/file.php?rid=3" />
+                        </json:object>
+                    </json:output>
+                </router:file>
+            </router:directory>
             <router:directory path="history">
                 <router:file name="historyRevision" path="\cehistory:created_date">
                     <pages:historyRevision url="var:pageUrl" createdDate="cehistory:created_date" />
@@ -156,21 +153,5 @@
         </router:directory>
     </router:fromPath>
 
-    <controls:auth />
-
-    <controls:navbar />
-    <bs:container class="my-4">
-        <var:use name="message" scope="temp" />
-        <web:condition when="var:message">
-            <bs:alert color="primary" class="mb-4">
-                <web:out text="var:message" />
-            </bs:alert>
-        </web:condition>
-
-        <!-- if:false can't be used here -->
-        <web:condition when="router:hasMatch" isInverted="true">
-            Not Found 
-        </web:condition>
-        <router:render />
-    </bs:container>
+    <controls:template />
 </module:use>

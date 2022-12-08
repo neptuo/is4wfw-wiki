@@ -23,14 +23,14 @@
         imageUploadFunction: async (file, onSuccess, onError) => {
             const data = new FormData()
             data.append('file', file)
-            data.append('pageId', '<web:out text="var:pageId" />')
 
-            const response = await fetch('/api/upload', {
+            const response = await fetch(window.location.pathname.replace('edit', 'ajax/upload'), {
                 method: 'POST',
                 body: data
             })
 
-            onSuccess("/file.php?rid=3");
+            const json = await response.json();
+            onSuccess(json.url);
         },
         autosave: {
             enabled: true,

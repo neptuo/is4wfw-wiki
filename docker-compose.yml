@@ -12,6 +12,7 @@ services:
     ports:
       - "8100:80"
     volumes:
+      - ./.temp/cache:/var/www/html/cache
       - ./.temp/modules:/var/www/html/modules
       - ./.temp/user:/var/www/html/user
       - ./src:/var/www/html/modules/wiki:ro

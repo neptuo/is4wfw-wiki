@@ -2,7 +2,7 @@
     <bs:column small="12" medium="6" large="4">
         <edit:form submit="login">
             <web:condition when="edit:save">
-                <login:login group="wiki" username="edit:username" password="edit:password" cookieName="wiki">
+                <login:login group="wiki" username="edit:username" password="edit:password">
                     <web:condition when="var:lastPage" isInverted="true">
                         <var:declare name="lastPage" value="route:home" />
                     </web:condition>
