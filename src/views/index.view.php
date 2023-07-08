@@ -92,11 +92,7 @@
                     <var:declare name="ajax" value="php:true" />
                 </web:out>
                 <router:file path="upload">
-                    <json:output>
-                        <json:object>
-                            <json:key name="url" value="~/file.php?rid=3" />
-                        </json:object>
-                    </json:output>
+                    <pages:ajaxUpload />
                 </router:file>
             </router:directory>
             <router:directory path="history">
@@ -130,7 +126,7 @@
             </filter:declare>
             <cepage:urlResolver propertyName="url" columnName="url" filter="filter:pageWithFolder" />
             
-            <!-- Page routes (with folder) -->
+            <web:lookless><!-- Page routes (with folder) --></web:lookless>
             <router:directory path="\cepage:url">
                 <var:declare name="pageUrl" value="cepage:url" />
                 <router:file name="editWithFolder" path="edit">
@@ -138,6 +134,14 @@
                         <pages:edit url="var:pageUrl" />
                     </login:authorized>
                 </router:file>
+                <router:directory path="ajax">
+                    <web:out if:true="router:isEvaluate">
+                        <var:declare name="ajax" value="php:true" />
+                    </web:out>
+                    <router:file path="upload">
+                        <pages:ajaxUpload />
+                    </router:file>
+                </router:directory>
                 <router:directory path="history">
                     <router:file name="historyRevisionWithFolder" path="\cehistory:created_date">
                         <pages:historyRevision url="var:pageUrl" createdDate="cehistory:created_date" />
