@@ -24,6 +24,14 @@
                 </div>
                 <login:authorized any="wiki">
                     <div class="ml-2">
+                        <web:a pageId="route:new" class="btn btn-success" param-folderId="cefolder:id">
+                            <fa5:icon name="plus" />
+                            <span class="d-none d-md-inline">
+                                New page
+                            </span>
+                        </web:a>
+                    </div>
+                    <div class="ml-2">
                         <web:a pageId="route:folderEdit" class="btn btn-primary text-nowrap">
                             <fa5:icon name="pen" />
                             <span class="d-none d-md-inline">

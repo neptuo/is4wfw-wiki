@@ -98,6 +98,10 @@
 </controls:pageUrl>
 
 <edit:form id="page-edit-form" submit="save">
+    <web:out if:true="edit:load">
+        <edit:set name="folder_id" value="query:folderId" />
+    </web:out>
+
     <controls:stickyHeader>
         <div class="d-flex align-items-center">
             <div class="flex-grow-1 text-truncate">
