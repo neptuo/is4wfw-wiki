@@ -39,6 +39,14 @@
                         </controls:pageLink>
                     </div>
                     <div class="ml-2">
+                        <controls:pageLink folderUrl="cepage:folder_id.url" type="files" class="btn btn-secondary text-nowrap">
+                            <fa5:icon name="file" />
+                            <span class="d-none d-md-inline">
+                                Files
+                            </span>
+                        </controls:pageLink>
+                    </div>
+                    <div class="ml-2">
                         <controls:pageLink folderUrl="cepage:folder_id.url" type="edit" class="btn btn-primary text-nowrap">
                             <fa5:icon name="pen" />
                             <span class="d-none d-md-inline">
