@@ -24,7 +24,7 @@
             const data = new FormData()
             data.append('file', file)
 
-            const response = await fetch(window.location.pathname.replace('edit', 'ajax/upload'), {
+        const response = await fetch(window.location.pathname.replace('edit', 'ajax/upload'), {
                 method: 'POST',
                 body: data
             })
@@ -154,6 +154,10 @@
 
         <ui:defaultValue name="created_date" format="web:currentTime" />
         <ui:constant name="changed_date" value="web:currentTime" />
+
+        <web:out if:stringEmpty="var:wiki.upload.id" if:not="true">
+            <cepage:emptyDirectory name="directory_id" parentDirId="var:wiki.upload.id" nameFormat="{id} - {title}" renameOnUpdate="true" />
+        </web:out>
 
         <bs:row class="form-row">
             <bs:column default="12" medium="2">
