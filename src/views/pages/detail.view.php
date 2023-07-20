@@ -67,6 +67,10 @@
                 </login:authorized>
             </div>
             <div>
+                <web:condition when="cepage:folder_id.name">
+                    <fa5:icon prefix="fas" name="folder" title="Folder" />
+                    <web:out text="cepage:folder_id.name" />
+                </web:condition>
                 <small class="mr-1">
                     <fa5:icon prefix="far" name="clock" title="Changed at" />
                     <ui:dateTimeValue value="cepage:changed_date" format="d.m.Y H:i:s" />
