@@ -14,8 +14,27 @@
                     Attached files
                 </h1>
             </div>
-            <div>
-                <controls:pageLink folderUrl="cepage:folder_id.url" class="btn btn-primary text-nowrap">
+            <login:authorized any="wiki">
+                <div>
+                    <edit:form submit="upload">
+                        <web:out if:true="edit:saved">
+                            <web:redirectToSelf />
+                        </web:out>
+
+                        <div style="display: none;">
+                            <fa:upload dirId="cepage:directory_id">
+                                <ui:filebox id="upload-box" name="files" isMulti="true" />
+                            </fa:upload>
+                            <button id="upload-submit" type="submit" name="upload" value="upload"></button>
+                        </div>
+                        <bs:button id="upload-button" color="primary" type="button">
+                            Upload...
+                        </bs:button>
+                    </edit:form>
+                </div>
+            </login:authorized>
+            <div class="ml-2">
+                <controls:pageLink folderUrl="cepage:folder_id.url" class="btn btn-secondary text-nowrap">
                     View page
                 </controls:pageLink>
             </div>
@@ -33,7 +52,7 @@
                         &#126;/file.php?rid=<web:out text="fa:browserId" />
                     </ui:columnTemplate>
                     <ui:columnTemplate>
-                        <a href="~/file.php?rid=<web:out text=" fa:browserId" />" target="_blank">
+                        <a href="~/file.php?rid=<web:out text="fa:browserId" />" target="_blank">
                             Open...
                         </a>
                     </ui:columnTemplate>
@@ -42,3 +61,15 @@
         </div>
     </ui:first>
 </cepage:list>
+
+<js:script placement="tail">
+	$uploadSubmit = $("#upload-submit");
+    $uploadBox = $("#upload-box");
+    $uploadBox.change(() => {
+        $uploadSubmit.click();
+    });
+    $("#upload-button").click(e => {
+        e.preventDefault();
+        $uploadBox.click();
+    });
+</js:script>
