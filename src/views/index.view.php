@@ -106,6 +106,9 @@
             <router:file path="files" name="files">
                 <pages:files url="var:pageUrl" />
             </router:file>
+            <router:file path="delete" name="delete">
+                <pages:delete url="var:pageUrl" />
+            </router:file>
             <router:file path="" name="page">
                 <pages:detail url="var:pageUrl" />
             </router:file>
@@ -155,6 +158,9 @@
                 </router:directory>
                 <router:file path="files" name="filesWithFolder">
                     <pages:files url="var:pageUrl" />
+                </router:file>
+                <router:file path="delete" name="deleteWithFolder">
+                    <pages:delete url="var:pageUrl" />
                 </router:file>
                 <router:file path="" name="pageWithFolder">
                     <pages:detail url="var:pageUrl" />

@@ -17,6 +17,9 @@
         <web:case is="files">
             <template:content pageUrl="route:files" />
         </web:case>
+        <web:case is="delete">
+            <template:content pageUrl="route:delete" />
+        </web:case>
     </web:switch>
 </web:out>
 <web:out if:stringEmpty="template:folderUrl" if:not="true">
@@ -36,6 +39,9 @@
         </web:case>
         <web:case is="files">
             <template:content pageUrl="route:filesWithFolder" />
+        </web:case>
+        <web:case is="delete">
+            <template:content pageUrl="route:deleteWithFolder" />
         </web:case>
     </web:switch>
 </web:out>

@@ -2,14 +2,6 @@
     <js:style path="module:assets" />
 </module:assets>
 
-<login:authorized any="wiki">
-    <web:condition when="post:delete">
-        <cepage:deleter url="template:url">
-            <var:declare name="message" scope="temp" value="Page has been deleted." />
-            <web:redirectTo pageId="route:home" />
-        </cepage:deleter>
-    </web:condition>
-</login:authorized>
 <filter:declare name="detail" alias="p">
     <filter:equals name="url" value="template:url" />
     <login:authorized none="wiki">
@@ -22,68 +14,80 @@
     </ui:empty>
     <ui:first items="cepage:list">
         <template:title value="cepage:title" />
-        <controls:stickyHeader>
-            <div class="d-flex align-items-center">
-                <div class="flex-grow-1 text-truncate">
-                    <h1 class="mb-0 text-truncate">
-                        <web:out text="cepage:title" />
-                    </h1>
+        <controls:stickyHeader separator="false">
+            <div class="text-truncate px-2 pb-2 pb-sm-0">
+                <h1 class="mb-0 text-truncate">
+                    <web:out text="cepage:title" />
+                </h1>
+            </div>
+            <div class="d-block d-sm-flex align-items-end">
+                <div class="flex-grow-1 border-bottom pb-2 px-2 d-none d-sm-block">
+                    <div class="">
+                        <web:condition when="cepage:folder_id.name">
+                            <small class="mr-1">
+                                <fa5:icon prefix="fas" name="folder" title="Folder" />
+                                <web:out text="cepage:folder_id.name" />
+                            </small>
+                        </web:condition>
+                        <small class="mr-1">
+                            <fa5:icon prefix="far" name="clock" title="Changed at" />
+                            <ui:dateTimeValue value="cepage:changed_date" format="d.m.Y H:i:s" />
+                        </small>
+                        <web:condition when="cepage:is_public">
+                            <small class="mr-1">
+                                <fa5:icon name="user-secret" />
+                                Public
+                            </small>
+                        </web:condition>
+                    </div>
                 </div>
-                <login:authorized any="wiki">
-                    <div>
-                        <controls:pageLink folderUrl="cepage:folder_id.url" type="history" class="btn btn-secondary text-nowrap">
-                            <fa5:icon prefix="fas" name="history" />
+                <bs:nav mode="tabs">
+                    <controls:pageUrl folderUrl="cepage:folder_id.url" type="view">
+                        <bs:navItem url="template:pageUrl" isActive="true">
+                            <fa5:icon name="eye" />
                             <span class="d-none d-md-inline">
-                                History
+                                View
                             </span>
-                        </controls:pageLink>
-                    </div>
-                    <div class="ml-2">
-                        <controls:pageLink folderUrl="cepage:folder_id.url" type="files" class="btn btn-secondary text-nowrap">
-                            <fa5:icon name="file" />
-                            <span class="d-none d-md-inline">
-                                Files
-                            </span>
-                        </controls:pageLink>
-                    </div>
-                    <div class="ml-2">
-                        <controls:pageLink folderUrl="cepage:folder_id.url" type="edit" class="btn btn-primary text-nowrap">
-                            <fa5:icon name="pen" />
-                            <span class="d-none d-md-inline">
-                                Edit
-                            </span>
-                        </controls:pageLink>
-                    </div>
-                    <div class="ml-2">
-                        <ui:form class="form-inline">
-                            <bs:button color="danger" name="delete" value="delete" class="text-nowrap">
+                        </bs:navItem>
+                    </controls:pageUrl>
+                    <login:authorized any="wiki">
+                        <controls:pageUrl folderUrl="cepage:folder_id.url" type="edit">
+                            <bs:navItem url="template:pageUrl">
+                                <fa5:icon name="pen" />
+                                <span class="d-none d-md-inline">
+                                    Edit
+                                </span>
+                            </bs:navItem>
+                        </controls:pageUrl>
+                        <controls:pageUrl folderUrl="cepage:folder_id.url" type="history">
+                            <bs:navItem url="template:pageUrl">
+                                <fa5:icon prefix="fas" name="history" />
+                                <span class="d-none d-md-inline">
+                                    History
+                                </span>
+                            </bs:navItem>
+                        </controls:pageUrl>
+                        <controls:pageUrl folderUrl="cepage:folder_id.url" type="files">
+                            <bs:navItem url="template:pageUrl">
+                                <fa5:icon name="file" />
+                                <span class="d-none d-md-inline">
+                                    Files
+                                </span>
+                            </bs:navItem>
+                        </controls:pageUrl>
+                        <controls:pageUrl folderUrl="cepage:folder_id.url" type="delete">
+                            <bs:navItem url="template:pageUrl" a-class="text-danger">
                                 <fa5:icon name="trash-alt" />
                                 <span class="d-none d-md-inline">
-                                    Delete
+                                    Delete...
                                 </span>
-                            </bs:button>
-                        </ui:form>
-                    </div>
-                </login:authorized>
-            </div>
-            <div>
-                <web:condition when="cepage:folder_id.name">
-                    <fa5:icon prefix="fas" name="folder" title="Folder" />
-                    <web:out text="cepage:folder_id.name" />
-                </web:condition>
-                <small class="mr-1">
-                    <fa5:icon prefix="far" name="clock" title="Changed at" />
-                    <ui:dateTimeValue value="cepage:changed_date" format="d.m.Y H:i:s" />
-                </small>
-                <web:condition when="cepage:is_public">
-                    <small class="mr-1">
-                        <fa5:icon name="user-secret" />
-                        Public
-                    </small>
-                </web:condition>
+                            </bs:navItem>
+                        </controls:pageUrl>
+                    </login:authorized>
+                </bs:nav>
             </div>
         </controls:stickyHeader>
-        <div class="markdown-body">
+        <div class="markdown-body px-2">
             <md:render source="cepage:content" />
         </div>
     </ui:first>
