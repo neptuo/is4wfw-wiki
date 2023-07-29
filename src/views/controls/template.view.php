@@ -14,6 +14,10 @@
                 border: none;
                 outline: none;
             }
+
+            a.dropdown-item .fa, a.dropdown-item .fas {
+                width: 20px;
+            }
         </style>
     
         <web:out if:stringEmpty="var:wiki.icon.id" if:not="true">
