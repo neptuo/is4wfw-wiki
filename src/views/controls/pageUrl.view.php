@@ -3,22 +3,34 @@
 <web:out if:stringEmpty="template:folderUrl">
     <web:switch when="template:type">
         <web:case is="view">
-            <template:content pageUrl="route:page" />
+            <route:use name="page">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="edit">
-            <template:content pageUrl="route:edit" />
+            <route:use name="edit">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="history">
-            <template:content pageUrl="route:history" />
+            <route:use name="history">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="historyRevision">
-            <template:content pageUrl="route:historyRevision" />
+            <route:use name="historyRevision">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="files">
-            <template:content pageUrl="route:files" />
+            <route:use name="files">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="delete">
-            <template:content pageUrl="route:delete" />
+            <route:use name="delete">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
     </web:switch>
 </web:out>
@@ -26,22 +38,34 @@
     <php:set property="cefolder:url" value="template:folderUrl" />
     <web:switch when="template:type">
         <web:case is="view">
-            <template:content pageUrl="route:pageWithFolder" />
+            <route:use name="pageWithFolder">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="edit">
-            <template:content pageUrl="route:editWithFolder" />
+            <route:use name="editWithFolder">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="history">
-            <template:content pageUrl="route:historyWithFolder" />
+            <route:use name="historyWithFolder">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="historyRevision">
-            <template:content pageUrl="route:historyRevisionWithFolder" />
+            <route:use name="historyRevisionWithFolder">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="files">
-            <template:content pageUrl="route:filesWithFolder" />
+            <route:use name="filesWithFolder">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
         <web:case is="delete">
-            <template:content pageUrl="route:deleteWithFolder" />
+            <route:use name="deleteWithFolder">
+                <template:content pageUrl="route:url" isActive="route:isActive" />
+            </route:use>
         </web:case>
     </web:switch>
 </web:out>
