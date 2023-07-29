@@ -1,3 +1,23 @@
+<list:declare name="pageMenu">
+    <controls:pageUrl folderUrl="cepage:folder_id.url" type="view">
+        <list:add key-iconPrefix="fa" key-icon="eye" key-url="template:pageUrl" key-text="View" />
+    </controls:pageUrl>
+    <login:authorized any="wiki">
+        <controls:pageUrl folderUrl="cepage:folder_id.url" type="edit">
+            <list:add key-iconPrefix="fa" key-icon="pen" key-url="template:pageUrl" key-text="Edit" />
+        </controls:pageUrl>
+        <controls:pageUrl folderUrl="cepage:folder_id.url" type="history">
+            <list:add key-iconPrefix="fas" key-icon="history" key-url="template:pageUrl" key-text="History" />
+        </controls:pageUrl>
+        <controls:pageUrl folderUrl="cepage:folder_id.url" type="files">
+            <list:add key-iconPrefix="fa" key-icon="file" key-url="template:pageUrl" key-text="Files" />
+        </controls:pageUrl>
+        <controls:pageUrl folderUrl="cepage:folder_id.url" type="delete">
+            <list:add key-iconPrefix="fa" key-icon="trash-alt" key-url="template:pageUrl" key-text="Delete..." key-class="text-danger" />
+        </controls:pageUrl>
+    </login:authorized>
+</list:declare>
+
 <controls:stickyHeader separator="false">
     <div class="d-flex">
         <div class="flex-fill text-truncate px-2 pb-2 pb-sm-0">
@@ -10,49 +30,14 @@
                 <fa5:icon prefix="fas" name="ellipsis-v" />
             </bs:button>
             <div class="dropdown-menu dropdown-menu-right">
-                <controls:pageUrl folderUrl="cepage:folder_id.url" type="view">
-                    <web:a pageId="template:pageUrl" class="dropdown-item" isActive="true">
-                        <fa5:icon name="eye" />
+                <ui:forEach items="list:pageMenu">
+                    <a href="<web:out text="list:pageMenu-url" />" class="dropdown-item <web:out text="list:pageMenu-class" />">
+                        <fa5:icon prefix="list:pageMenu-iconPrefix" name="list:pageMenu-icon" />
                         <span>
-                            View
+                            <web:out text="list:pageMenu-text" />
                         </span>
-                    </web:a>
-                </controls:pageUrl>
-                <login:authorized any="wiki">
-                    <controls:pageUrl folderUrl="cepage:folder_id.url" type="edit">
-                        <web:a pageId="template:pageUrl" class="dropdown-item">
-                            <fa5:icon name="pen" />
-                            <span>
-                                Edit
-                            </span>
-                        </web:a>
-                    </controls:pageUrl>
-                    <controls:pageUrl folderUrl="cepage:folder_id.url" type="history">
-                        <web:a pageId="template:pageUrl" class="dropdown-item">
-                            <fa5:icon prefix="fas" name="history" />
-                            <span>
-                                History
-                            </span>
-                        </web:a>
-                    </controls:pageUrl>
-                    <controls:pageUrl folderUrl="cepage:folder_id.url" type="files">
-                        <web:a pageId="template:pageUrl" class="dropdown-item">
-                            <fa5:icon name="file" />
-                            <span>
-                                Files
-                            </span>
-                        </web:a>
-                    </controls:pageUrl>
-                    <hr class="dropdown-divider" />
-                    <controls:pageUrl folderUrl="cepage:folder_id.url" type="delete">
-                        <web:a pageId="template:pageUrl" class="dropdown-item text-danger">
-                            <fa5:icon name="trash-alt" />
-                            <span>
-                                Delete...
-                            </span>
-                        </web:a>
-                    </controls:pageUrl>
-                </login:authorized>
+                    </a>
+                </ui:forEach>
             </div>
         </div>
     </div>
@@ -79,48 +64,14 @@
         </div>
         <div class="d-none d-sm-block">
             <bs:nav mode="tabs">
-                <controls:pageUrl folderUrl="cepage:folder_id.url" type="view">
-                    <bs:navItem url="template:pageUrl" isActive="true">
-                        <fa5:icon name="eye" />
+                <ui:forEach items="list:pageMenu">
+                    <bs:navItem url="list:pageMenu-url" a-class="list:pageMenu-class">
+                        <fa5:icon prefix="list:pageMenu-iconPrefix" name="list:pageMenu-icon" />
                         <span class="d-none d-md-inline">
-                            View
+                            <web:out text="list:pageMenu-text" />
                         </span>
                     </bs:navItem>
-                </controls:pageUrl>
-                <login:authorized any="wiki">
-                    <controls:pageUrl folderUrl="cepage:folder_id.url" type="edit">
-                        <bs:navItem url="template:pageUrl">
-                            <fa5:icon name="pen" />
-                            <span class="d-none d-md-inline">
-                                Edit
-                            </span>
-                        </bs:navItem>
-                    </controls:pageUrl>
-                    <controls:pageUrl folderUrl="cepage:folder_id.url" type="history">
-                        <bs:navItem url="template:pageUrl">
-                            <fa5:icon prefix="fas" name="history" />
-                            <span class="d-none d-md-inline">
-                                History
-                            </span>
-                        </bs:navItem>
-                    </controls:pageUrl>
-                    <controls:pageUrl folderUrl="cepage:folder_id.url" type="files">
-                        <bs:navItem url="template:pageUrl">
-                            <fa5:icon name="file" />
-                            <span class="d-none d-md-inline">
-                                Files
-                            </span>
-                        </bs:navItem>
-                    </controls:pageUrl>
-                    <controls:pageUrl folderUrl="cepage:folder_id.url" type="delete">
-                        <bs:navItem url="template:pageUrl" a-class="text-danger">
-                            <fa5:icon name="trash-alt" />
-                            <span class="d-none d-md-inline">
-                                Delete...
-                            </span>
-                        </bs:navItem>
-                    </controls:pageUrl>
-                </login:authorized>
+                </ui:forEach>
             </bs:nav>
         </div>
     </div>
