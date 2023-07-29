@@ -13,11 +13,16 @@
     </login:authorized>
 </filter:declare>
 <cepage:list filter="filter:detail">
+    <cepage:register name="folder_id.url" />
+    <cepage:register name="folder_id.name" />
+    <cepage:register name="is_public" />
+    <cepage:register name="changed_date" />
     <ui:empty items="cepage:list">
         Not found
     </ui:empty>
     <ui:first items="cepage:list">
-
+        <template:title value="cepage:title" />
+        <controls:pageHeader />
         <login:authorized any="wiki">
             <ui:form class="form-inline">
                 <bs:button color="danger" name="delete" value="delete" class="text-nowrap">
@@ -31,6 +36,5 @@
                 </bs:button>
             </ui:form>
         </login:authorized>
-
     </ui:first>
 </cepage:list>
