@@ -1,23 +1,6 @@
 <controls:pageDetail url="template:url" includeDirectoryId="true">
     <login:authorized any="wiki">
         <div>
-            <edit:form submit="upload">
-                <web:out if:true="edit:saved">
-                    <web:redirectToSelf />
-                </web:out>
-
-                <div style="display: none;">
-                    <fa:upload dirId="cepage:directory_id">
-                        <ui:filebox id="upload-box" name="files" isMulti="true" />
-                    </fa:upload>
-                    <button id="upload-submit" type="submit" name="upload" value="upload"></button>
-                </div>
-                <bs:button id="upload-button" color="primary" type="button">
-                    Upload...
-                </bs:button>
-            </edit:form>
-        </div>
-        <div class="mt-4">
             <fa:browser dirId="cepage:directory_id">
                 <ui:grid items="fa:browserList" class="table table-hover" thead-class="bg-dark text-light">
                     <ui:column header="Id" value="fa:browserId" />
@@ -36,6 +19,23 @@
                     </ui:columnTemplate>
                 </ui:grid>
             </fa:browser>
+        </div>
+        <div class="mt-4">
+            <edit:form submit="upload">
+                <web:out if:true="edit:saved">
+                    <web:redirectToSelf />
+                </web:out>
+
+                <div style="display: none;">
+                    <fa:upload dirId="cepage:directory_id">
+                        <ui:filebox id="upload-box" name="files" isMulti="true" />
+                    </fa:upload>
+                    <button id="upload-submit" type="submit" name="upload" value="upload"></button>
+                </div>
+                <bs:button id="upload-button" color="primary" type="button">
+                    Upload...
+                </bs:button>
+            </edit:form>
         </div>
     </login:authorized>
 </controls:pageDetail>
