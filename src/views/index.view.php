@@ -87,14 +87,6 @@
                     <pages:edit url="var:pageUrl" />
                 </login:authorized>
             </router:file>
-            <router:directory path="ajax">
-                <web:out if:true="router:isEvaluate">
-                    <var:declare name="ajax" value="php:true" />
-                </web:out>
-                <router:file path="upload">
-                    <pages:ajaxUpload />
-                </router:file>
-            </router:directory>
             <router:directory path="history">
                 <router:file name="historyRevision" path="\cehistory:created_date">
                     <pages:historyRevision url="var:pageUrl" createdDate="cehistory:created_date" />
@@ -140,14 +132,6 @@
                         <pages:edit url="var:pageUrl" />
                     </login:authorized>
                 </router:file>
-                <router:directory path="ajax">
-                    <web:out if:true="router:isEvaluate">
-                        <var:declare name="ajax" value="php:true" />
-                    </web:out>
-                    <router:file path="upload">
-                        <pages:ajaxUpload />
-                    </router:file>
-                </router:directory>
                 <router:directory path="history">
                     <router:file name="historyRevisionWithFolder" path="\cehistory:created_date">
                         <pages:historyRevision url="var:pageUrl" createdDate="cehistory:created_date" />

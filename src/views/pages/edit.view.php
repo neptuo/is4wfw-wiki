@@ -19,19 +19,6 @@
         shortcuts: {
             save: "Cmd-S"
         },
-        uploadImage:true,
-        imageUploadFunction: async (file, onSuccess, onError) => {
-            const data = new FormData()
-            data.append('file', file)
-
-        const response = await fetch(window.location.pathname.replace('edit', 'ajax/upload'), {
-                method: 'POST',
-                body: data
-            })
-
-            const json = await response.json();
-            onSuccess(json.url);
-        },
         autosave: {
             enabled: true,
             uniqueId: "page-<web:out text="var:pageId" />",
@@ -64,7 +51,6 @@
             "|",
             "link",
             "image",
-            "upload-image",
             "horizontal-rule",
             "|",
             "guide",
