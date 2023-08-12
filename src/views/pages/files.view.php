@@ -19,7 +19,7 @@
         </div>
         <div class="mt-4">
             <fa:browser dirId="cepage:directory_id">
-                <ui:grid items="fa:browserList" class="table">
+                <ui:grid items="fa:browserList" class="table table-hover" thead-class="bg-dark text-light">
                     <ui:column header="Id" value="fa:browserId" />
                     <ui:columnTemplate header="Name">
                         <utils:concat output="var:fileName" separator="." value1="fa:browserName" value2="fa:browserExtension" />

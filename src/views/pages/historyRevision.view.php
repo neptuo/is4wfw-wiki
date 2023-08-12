@@ -1,74 +1,45 @@
-<filter:declare name="detail" alias="p">
-    <filter:equals name="url" value="template:url" />
-    <login:authorized none="wiki">
-        <filter:equals name="is_public" value="1" />
-    </login:authorized>
-</filter:declare>
-<cepage:list filter="filter:detail">
-    <ui:empty items="cepage:list">
-        Not found
-    </ui:empty>
-    <ui:first items="cepage:list">
-        <cehistory:list filter-id="cepage:id" filter-created_date="template:createdDate">
-            <ui:first items="cehistory:list">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1 text-truncate">
-                        <h1 class="mb-0 text-truncate">
-                            Revision from <ui:dateTimeValue value="cehistory:created_date" format="d.m.Y H:i:s" />
-                        </h1>
-                    </div>
-                    <div>
-                        <controls:pageLink folderUrl="cepage:folder_id.url" class="btn btn-primary text-nowrap">
-                            View current
-                        </controls:pageLink>
-                    </div>
-                    <div class="ml-2">
-                        <controls:pageLink folderUrl="cepage:folder_id.url" type="history" class="btn btn-secondary text-nowrap">
-                            <fa5:icon prefix="fas" name="history" />
-                            <span class="d-none d-md-inline">
-                                History
-                            </span>
-                        </controls:pageLink>
-                    </div>
-                </div>
-                <hr>
+<controls:pageDetail url="template:url">
+    <cehistory:list filter-id="cepage:id" filter-created_date="template:createdDate">
+        <ui:first items="cehistory:list">
+            <h3 class="text-truncate">
+                Revision from <ui:dateTimeValue value="cehistory:created_date" format="d.m.Y H:i:s" />
+            </h3>
 
-                <edit:form submit="sadkjalskdjalskdj">
-                    <ui:editable is="false">
-                        <cehistory:form key-id="cepage:id" key-created_date="template:createdDate">
-                            <bs:row>
-                                <bs:column default="12" medium="6">
-                                    <bs:formGroup label="Title:" field="title">
-                                        <ui:textbox name="title" class="bs:fieldValidatorCssClass" tabindex="1" autofocus="autofocus" />
-                                    </bs:formGroup>
-                                </bs:column>
-                                <bs:column default="12" medium="6">
-                                    <bs:formGroup label="Url:" field="url">
-                                        <ui:textbox name="url" class="bs:fieldValidatorCssClass" tabindex="2" />
-                                    </bs:formGroup>
-                                </bs:column>
-                                <bs:column default="12">
-                                    <div class="form-check-inline">
-                                        <ui:checkbox name="is_public" class="form-check-input" id="cbx-public" />
-                                        <label class="form-check-label" for="cbx-public">
-                                            Publicly accessible
-                                        </label>
-                                    </div>
-                                    <div class="form-check-inline">
-                                        <ui:checkbox name="is_archived" class="form-check-input" id="cbx-archived" />
-                                        <label class="form-check-label" for="cbx-archived">
-                                            Archived
-                                        </label>
-                                    </div>
-                                </bs:column>
-                            </bs:row>
-                            <bs:formGroup field="content" class="mt-3">
-                                <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" tabindex="3" />
-                            </bs:formGroup>
-                        </cehistory:form>
-                    </ui:editable>
-                </edit:form>
-            </ui:first>
-        </cehistory:list>
-    </ui:first>
-</cepage:list>
+            <edit:form submit="sadkjalskdjalskdj">
+                <ui:editable is="false">
+                    <cehistory:form key-id="cepage:id" key-created_date="template:createdDate">
+                        <bs:row>
+                            <bs:column default="12" medium="6">
+                                <bs:formGroup label="Title:" field="title">
+                                    <ui:textbox name="title" class="bs:fieldValidatorCssClass" tabindex="1" autofocus="autofocus" />
+                                </bs:formGroup>
+                            </bs:column>
+                            <bs:column default="12" medium="6">
+                                <bs:formGroup label="Url:" field="url">
+                                    <ui:textbox name="url" class="bs:fieldValidatorCssClass" tabindex="2" />
+                                </bs:formGroup>
+                            </bs:column>
+                            <bs:column default="12">
+                                <div class="form-check-inline">
+                                    <ui:checkbox name="is_public" class="form-check-input" id="cbx-public" />
+                                    <label class="form-check-label" for="cbx-public">
+                                        Publicly accessible
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <ui:checkbox name="is_archived" class="form-check-input" id="cbx-archived" />
+                                    <label class="form-check-label" for="cbx-archived">
+                                        Archived
+                                    </label>
+                                </div>
+                            </bs:column>
+                        </bs:row>
+                        <bs:formGroup field="content" class="mt-3">
+                            <ui:textarea id="md-content" name="content" class="bs:fieldValidatorCssClass" style="height:500px;" tabindex="3" />
+                        </bs:formGroup>
+                    </cehistory:form>
+                </ui:editable>
+            </edit:form>
+        </ui:first>
+    </cehistory:list>
+</controls:pageDetail>
