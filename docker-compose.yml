@@ -16,6 +16,11 @@ services:
       - ./.temp/modules:/var/www/html/instance/modules
       - ./.temp/user:/var/www/html/instance/user
       - ./src:/var/www/html/instance/modules/wiki:ro
+    environment:
+      - IS4WFW_DB_HOSTNAME=mysql
+      - IS4WFW_DB_USER=phpwfw
+      - IS4WFW_DB_PASSWORD=1234
+      - IS4WFW_DB_DATABASE=phpwfw
     depends_on:
       - "composer"
     links:
