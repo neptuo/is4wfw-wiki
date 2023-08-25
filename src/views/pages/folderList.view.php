@@ -57,6 +57,7 @@
         <ui:any items="cefolder:list">
             <cefolder:register name="url" />
             <ui:forEach items="cefolder:list">
+                <php:set property="cefolder:linkUrl" value="cefolder:url" />
                 <web:a pageId="route:folder" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">
