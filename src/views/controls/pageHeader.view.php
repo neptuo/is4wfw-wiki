@@ -1,6 +1,12 @@
 <list:declare name="pageMenu">
     <controls:pageUrl url="cepage:url" folderUrl="cepage:folder_id.url" type="view">
-        <list:add key-iconPrefix="fa" key-icon="eye" key-url="template:pageUrl" key-text="View" key-isActive="template:isActive" />
+        <var:declare name="pageViewActive" value="template:isActive" />
+        <web:condition when="var:pageViewActive" isInverted="true">
+            <route:use name="home">
+                <var:declare name="pageViewActive" value="route:isActive" />
+            </route:use>
+        </web:condition>
+        <list:add key-iconPrefix="fa" key-icon="eye" key-url="template:pageUrl" key-text="View" key-isActive="var:pageViewActive" />
     </controls:pageUrl>
     <login:authorized any="wiki">
         <controls:pageUrl url="cepage:url" folderUrl="cepage:folder_id.url" type="edit">
