@@ -126,6 +126,14 @@
                 <var:declare name="redirectType" value="view" />
             </web:condition>
 
+            <web:condition when="var:folderUrl" isInverted="true">
+                <cepage:list filter-id="edit:id">
+                    <ui:first items="cepage:list">
+                        <var:declare name="folderUrl" value="cepage:folder_id.url" />
+                    </ui:first>
+                </cepage:list>
+            </web:condition>
+
             <controls:pageUrl url="cepage:url" folderUrl="var:folderUrl" type="var:redirectType">
                 <var:declare name="redirectUrl" value="template:pageUrl" />    
             </controls:pageUrl>
