@@ -35,12 +35,14 @@
                 </bs:button>
             </div>
             <div class="ml-2">
+                <php:set property="cefolder:linkUrl" value="template:url" />
                 <web:a pageId="route:folder" text="Close" class="btn btn-secondary" tabindex="6" />
             </div>
         </div>
     </controls:stickyHeader>
     <cefolder:form key-id="var:folderId">
         <web:condition when="edit:saved">
+            <php:set property="cefolder:linkUrl" value="cefolder:url" />
             <web:condition when="post:save" is="save">
                 <web:redirectTo pageId="route:folderEdit" />
             </web:condition>
