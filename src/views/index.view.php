@@ -49,8 +49,10 @@
             </controls:pageListGrouped>
         </router:file>
         <router:file path="settings" name="settings">
-            <template:title value="Settings" />
-            <pages:settings />
+            <login:authorized any="wiki">
+                <template:title value="Settings" />
+                <pages:settings />
+            </login:authorized>
         </router:file>
         <router:file path="profile" name="profile">
             <template:title value="Profile" />
