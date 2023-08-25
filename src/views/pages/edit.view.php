@@ -196,7 +196,7 @@
             <val:required key="title" /> 
             <val:required key="url" />
 
-            <controls:pageUniqueValidator pageId="var:pageId" />
+            <controls:pageUniqueValidator folderId="cepage:folder_id" pageId="var:pageId" />
             <controls:folderUniqueValidator />
         </web:condition>
     </cepage:form>
