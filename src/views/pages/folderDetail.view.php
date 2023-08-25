@@ -1,9 +1,9 @@
 <login:authorized any="wiki">
     <web:condition when="post:delete">
-        <cepage:deleter url="template:url">
+        <cefolder:deleter url="template:url">
             <var:declare name="message" scope="temp" value="Folder has been deleted." />
             <web:redirectTo pageId="route:folderList" />
-        </cepage:deleter>
+        </cefolder:deleter>
     </web:condition>
 </login:authorized>
 <filter:declare name="detail" alias="f">
@@ -40,14 +40,21 @@
                         </web:a>
                     </div>
                     <div class="ml-2">
-                        <ui:form class="form-inline">
-                            <bs:button color="danger" name="delete" value="delete" class="text-nowrap">
-                                <fa5:icon name="trash-alt" />
-                                <span class="d-none d-md-inline">
-                                    Delete
-                                </span>
-                            </bs:button>
-                        </ui:form>
+                        <filter:declare name="folderHasPages" alias="p">
+                            <filter:equals name="folder_id" value="cefolder:id" />
+                        </filter:declare>
+                        <cepage:list filter="filter:folderHasPages">
+                            <ui:empty items="cepage:list">
+                                <ui:form class="form-inline">
+                                    <bs:button color="danger" name="delete" value="delete" class="text-nowrap">
+                                        <fa5:icon name="trash-alt" />
+                                        <span class="d-none d-md-inline">
+                                            Delete
+                                        </span>
+                                    </bs:button>
+                                </ui:form>
+                            </ui:empty>
+                        </cepage:list>
                     </div>
                 </login:authorized>
             </div>
