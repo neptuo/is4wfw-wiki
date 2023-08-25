@@ -82,6 +82,7 @@
     <nav class="fixed-bottom d-md-none navbar-bottom py-2">
         <bs:container>
             <bs:row>
+                <template:bottomNavItem route="home" icon="home" />
                 <template:bottomNavItem route="all" icon="file-alt" />
                 <template:bottomNavItem route="archive" icon="archive" />
                 <template:bottomNavItem route="favorites" icon="star" />
