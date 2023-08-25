@@ -76,7 +76,7 @@
         <div class="list-group mb-4">
             <cepage:register name="url" />
             <ui:forEach items="cepage:list">
-                <controls:pageLink folderUrl="cepage:folder_id.url" class="list-group-item list-group-item-action">
+                <controls:pageLink url="cepage:url" folderUrl="cepage:folder_id.url" class="list-group-item list-group-item-action">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">
                             <web:out text="cepage:title" />

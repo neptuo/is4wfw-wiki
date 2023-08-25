@@ -1,6 +1,6 @@
 <template:attribute name="type" default="view" />
-
 <web:out if:stringEmpty="template:folderUrl">
+    <php:set property="cepage:linkUrl" value="template:url" />
     <web:switch when="template:type">
         <web:case is="view">
             <route:use name="page">
@@ -35,7 +35,8 @@
     </web:switch>
 </web:out>
 <web:out if:stringEmpty="template:folderUrl" if:not="true">
-    <php:set property="cefolder:url" value="template:folderUrl" />
+    <php:set property="cefolder:linkUrl" value="template:folderUrl" />
+    <php:set property="cepage:linkUrlWithFolder" value="template:url" />
     <web:switch when="template:type">
         <web:case is="view">
             <route:use name="pageWithFolder">

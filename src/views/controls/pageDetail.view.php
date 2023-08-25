@@ -10,6 +10,7 @@
 <cef:declare name="pageDetail">
     <cef:add name="id" />
     <cef:add name="title" />
+    <cef:add name="url" />
     <cef:add name="folder_id.url" />
     <cef:add name="folder_id.name" />
     <cef:add name="is_public" />

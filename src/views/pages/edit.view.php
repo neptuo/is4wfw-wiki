@@ -79,7 +79,7 @@
     </edit:execute>
 </template:declare>
 
-<controls:pageUrl folderUrl="var:folderUrl">
+<controls:pageUrl url="template:url" folderUrl="var:folderUrl">
     <var:declare name="closeUrl" value="template:pageUrl" />
 </controls:pageUrl>
 
@@ -113,9 +113,7 @@
                 </bs:button>
             </div>
             <div class="ml-2">
-                <controls:pageUrl folderUrl="var:folderUrl">
-                    <web:a pageId="var:closeUrl" text="Close" class="btn btn-secondary" tabindex="7" />
-                </controls:pageUrl>
+                <web:a pageId="var:closeUrl" text="Close" class="btn btn-secondary" tabindex="7" />
             </div>
         </div>
     </controls:stickyHeader>
@@ -128,7 +126,7 @@
                 <var:declare name="redirectType" value="view" />
             </web:condition>
 
-            <controls:pageUrl folderUrl="var:folderUrl" type="var:redirectType">
+            <controls:pageUrl url="cepage:url" folderUrl="var:folderUrl" type="var:redirectType">
                 <var:declare name="redirectUrl" value="template:pageUrl" />    
             </controls:pageUrl>
 

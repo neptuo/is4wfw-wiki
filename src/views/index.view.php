@@ -19,8 +19,8 @@
     <filter:declare name="pageWithoutFolder">
         <filter:null name="folder_id" />
     </filter:declare>
-    <cepage:urlResolver propertyName="url" columnName="url" filter="filter:pageWithoutFolder" />
-    <cefolder:urlResolver propertyName="url" columnName="url" />
+    <cepage:urlResolver propertyName="linkUrl" columnName="url" filter="filter:pageWithoutFolder" />
+    <cefolder:urlResolver propertyName="linkUrl" columnName="url" />
     <cehistory:urlResolver propertyName="created_date" columnName="created_date" />
 
     <router:fromPath path="var:relativeUrl">
@@ -80,8 +80,8 @@
         </router:directory>
         
         <web:lookless><!-- Page routes --></web:lookless>
-        <router:directory path="\cepage:url">
-            <var:declare name="pageUrl" value="cepage:url" />
+        <router:directory path="\cepage:linkUrl">
+            <var:declare name="pageUrl" value="cepage:linkUrl" />
             <router:file name="edit" path="edit">
                 <login:authorized any="wiki">
                     <pages:edit url="var:pageUrl" />
@@ -106,8 +106,8 @@
             </router:file>
         </router:directory>
 
-        <router:directory path="\cefolder:url">
-            <var:declare name="folderUrl" value="cefolder:url" />
+        <router:directory path="\cefolder:linkUrl">
+            <var:declare name="folderUrl" value="cefolder:linkUrl" />
             <router:file name="folderEdit" path="edit">
                 <login:authorized any="wiki">
                     <pages:folderEdit url="var:folderUrl" />
@@ -118,15 +118,15 @@
             </router:file>
 
             <filter:declare name="pageWithFolder">
-                <filter:exists from="ce_folder" alias="p" outerColumn="folder_id" innerColumn="id">
-                    <filter:equals name="url" value="cefolder:url" />
+                <filter:exists from="ce_folder" alias="f" outerColumn="folder_id" innerColumn="id">
+                    <filter:equals name="url" value="var:folderUrl" />
                 </filter:exists>
             </filter:declare>
-            <cepage:urlResolver propertyName="url" columnName="url" filter="filter:pageWithFolder" />
+            <cepage:urlResolver propertyName="linkUrlWithFolder" columnName="url" filter="filter:pageWithFolder" />
             
             <web:lookless><!-- Page routes (with folder) --></web:lookless>
-            <router:directory path="\cepage:url">
-                <var:declare name="pageUrl" value="cepage:url" />
+            <router:directory path="\cepage:linkUrlWithFolder">
+                <var:declare name="pageUrl" value="cepage:linkUrlWithFolder" />
                 <router:file name="editWithFolder" path="edit">
                     <login:authorized any="wiki">
                         <pages:edit url="var:pageUrl" />
