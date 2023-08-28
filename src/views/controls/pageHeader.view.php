@@ -55,7 +55,8 @@
                 <web:condition when="cepage:folder_id.name">
                     <small class="mr-1">
                         <fa5:icon prefix="fas" name="folder" title="Folder" />
-                        <web:out text="cepage:folder_id.name" />
+                        <php:set property="cefolder:linkUrl" value="cepage:folder_id.url" />
+                        <web:a pageId="route:folder" text="cepage:folder_id.name" />
                     </small>
                 </web:condition>
                 <small class="mr-1">
