@@ -1,5 +1,4 @@
 <controls:pageDetail url="template:url" includeDirectoryId="true">
-    <login:authorized any="wiki">
         <web:out if:stringEmpty="cepage:directory_id" if:not="true">
             <div>
                 <fa:browser dirId="cepage:directory_id">
@@ -9,16 +8,17 @@
                         </bs:alert>
                     </ui:empty>
                     <ui:grid items="fa:browserList" class="table table-hover" thead-class="bg-dark text-light">
-                        <ui:column header="Id" value="fa:browserId" />
                         <ui:columnTemplate header="Name">
                             <utils:concat output="var:fileName" separator="." value1="fa:browserName" value2="fa:browserExtension" />
                             <web:out text="var:fileName" />
                         </ui:columnTemplate>
                         <ui:columnDateTime header="Modified" value="fa:timestamp" format="d.m.Y H:i:s" />
-                        <ui:columnTemplate header="Link">
-                            &#126;/file.php?rid=<web:out text="fa:browserId" />
-                        </ui:columnTemplate>
-                        <ui:columnTemplate>
+                        <login:authorized any="wiki">
+                            <ui:columnTemplate header="Link">
+                                &#126;/file.php?rid=<web:out text="fa:browserId" />
+                            </ui:columnTemplate>
+                        </login:authorized>
+                        <ui:columnTemplate td-style="width:1%">
                             <a href="~/file.php?rid=<web:out text="fa:browserId" />" target="_blank">
                                 Open...
                             </a>
@@ -26,28 +26,29 @@
                     </ui:grid>
                 </fa:browser>
             </div>
-            <div class="mt-4">
-                <edit:form submit="upload">
-                    <web:out if:true="edit:saved">
-                        <web:redirectToSelf />
-                    </web:out>
+            <login:authorized any="wiki">
+                <div class="mt-4">
+                    <edit:form submit="upload">
+                        <web:out if:true="edit:saved">
+                            <web:redirectToSelf />
+                        </web:out>
 
-                    <div style="display: none;">
-                        <fa:upload dirId="cepage:directory_id">
-                            <ui:filebox id="upload-box" name="files" isMulti="true" />
-                        </fa:upload>
-                        <button id="upload-submit" type="submit" name="upload" value="upload"></button>
-                    </div>
-                    <bs:button id="upload-button" color="primary" type="button">
-                        Upload...
-                    </bs:button>
-                </edit:form>
-            </div>
+                        <div style="display: none;">
+                            <fa:upload dirId="cepage:directory_id">
+                                <ui:filebox id="upload-box" name="files" isMulti="true" />
+                            </fa:upload>
+                            <button id="upload-submit" type="submit" name="upload" value="upload"></button>
+                        </div>
+                        <bs:button id="upload-button" color="primary" type="button">
+                            Upload...
+                        </bs:button>
+                    </edit:form>
+                </div>
+            </login:authorized>
         </web:out>
         <bs:alert color="warning" if:stringEmpty="cepage:directory_id">
             Save the page before uploading files
         </bs:alert>
-    </login:authorized>
 </controls:pageDetail>
 
 <js:script placement="tail">

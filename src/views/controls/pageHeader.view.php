@@ -15,9 +15,11 @@
         <controls:pageUrl url="cepage:url" folderUrl="cepage:folder_id.url" type="history">
             <list:add key-iconPrefix="fas" key-icon="history" key-url="template:pageUrl" key-text="History" key-isActive="template:isActive" />
         </controls:pageUrl>
-        <controls:pageUrl url="cepage:url" folderUrl="cepage:folder_id.url" type="files">
-            <list:add key-iconPrefix="fa" key-icon="file" key-url="template:pageUrl" key-text="Files" key-isActive="template:isActive" />
-        </controls:pageUrl>
+    </login:authorized>
+    <controls:pageUrl url="cepage:url" folderUrl="cepage:folder_id.url" type="files">
+        <list:add key-iconPrefix="fa" key-icon="file" key-url="template:pageUrl" key-text="Files" key-isActive="template:isActive" />
+    </controls:pageUrl>
+    <login:authorized any="wiki">
         <controls:pageUrl url="cepage:url" folderUrl="cepage:folder_id.url" type="delete">
             <list:add key-iconPrefix="fa" key-icon="trash-alt" key-url="template:pageUrl" key-text="Delete..." key-class="text-danger" key-isActive="template:isActive" />
         </controls:pageUrl>
