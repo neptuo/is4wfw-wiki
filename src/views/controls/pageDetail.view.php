@@ -14,6 +14,7 @@
     <cef:add name="folder_id.url" />
     <cef:add name="folder_id.name" />
     <cef:add name="is_public" />
+    <cef:add name="is_archived" />
     <cef:add name="changed_date" />
     <cef:add name="content" if:true="template:includeContent" />
     <cef:add name="directory_id" if:true="template:includeDirectoryId" />

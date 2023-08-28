@@ -51,7 +51,7 @@
     </div>
     <div class="d-block d-sm-flex align-items-end">
         <div class="flex-grow-1 border-bottom pb-2 px-2 d-none d-sm-block">
-            <div class="">
+            <div>
                 <web:condition when="cepage:folder_id.name">
                     <small class="mr-1">
                         <fa5:icon prefix="fas" name="folder" title="Folder" />
@@ -59,7 +59,7 @@
                         <web:a pageId="route:folder" text="cepage:folder_id.name" />
                     </small>
                 </web:condition>
-                <small class="mr-1">
+                <small class="mr-1 d-none d-md-inline">
                     <fa5:icon prefix="far" name="clock" title="Changed at" />
                     <ui:dateTimeValue value="cepage:changed_date" format="d.m.Y H:i:s" />
                 </small>
@@ -69,6 +69,12 @@
                         Public
                     </small>
                 </web:condition>
+                <web:condition when="cepage:is_archived">
+                    <small class="mr-1">
+                        <fa5:icon name="archive" />
+                        Archived
+                    </small>
+                </web:condition>
             </div>
         </div>
         <div class="d-none d-sm-block">
@@ -76,7 +82,7 @@
                 <ui:forEach items="list:pageMenu">
                     <bs:navItem url="list:pageMenu-url" isActive="list:pageMenu-isActive" a-class="list:pageMenu-class">
                         <fa5:icon prefix="list:pageMenu-iconPrefix" name="list:pageMenu-icon" />
-                        <span class="d-none d-md-inline">
+                        <span class="d-none d-lg-inline">
                             <web:out text="list:pageMenu-text" />
                         </span>
                     </bs:navItem>
